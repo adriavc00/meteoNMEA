@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import model.Model;
@@ -62,7 +57,7 @@ public class FXMLMainController implements Initializable {
         model = Model.getInstance();
 
         //==================================================================
-        // anyadimos listener para que cuando cambie el valor en el modelo 
+        // anyadimos listener para que cuando cambie el valor en el modelo
         //se actualice su valor en su correspondiente representacion grafica
         model.barometricPressureProperty().addListener((a, b, c) -> {
             String dat = String.valueOf(c) + " " + model.getBarometricUnit();
@@ -114,4 +109,3 @@ public class FXMLMainController implements Initializable {
         }
     }
 }
-

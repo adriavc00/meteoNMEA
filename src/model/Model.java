@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.io.File;
@@ -99,7 +94,6 @@ public class Model {
 
     //==================================================================
     // estructuras para las graficas de viento
-    
     // TWDSerie -- serie de datos de la direccion del viento TWD
     private XYChart.Series<String, Number> TWDSerie = new XYChart.Series<>();
 
@@ -138,7 +132,7 @@ public class Model {
 
         @Override
         public void sentenceRead(MDASentence sentence) {
-            // anadimos el codigo necesario para guardar la información de la sentence 
+            // anadimos el codigo necesario para guardar la información de la sentence
             TWD.set(sentence.getTrueWindDirection());
             TWS.set(sentence.getWindSpeedKnots());
             TEMP.set(sentence.getAirTemperature());
@@ -147,8 +141,10 @@ public class Model {
 
             //=================================================================
             // anyadimos el dato del viento a su respectiva lista y gestionamos el tamaño
-            TWDList.add(new XYChart.Data<>(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)), TWD.get()));
-            TWSList.add(new XYChart.Data<>(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)), TWS.get()));
+            TWDList.add(new XYChart.Data<>(LocalDateTime.now().format(
+                    DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)), TWD.get()));
+            TWSList.add(new XYChart.Data<>(LocalDateTime.now().format(
+                    DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)), TWS.get()));
             while (TWDList.size() > sizeDataWindChart.intValue()) {
                 TWDList.remove(0);
                 TWSList.remove(0);

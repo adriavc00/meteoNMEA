@@ -44,17 +44,15 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label text="  TWD: " />
-            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="º" />
+            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5 º" />
             <Label text="   TWS: " />
-            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Kn" />
+            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5 Kn" />
             <Label text="   TEMP: " />
-            <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="º" />
+            <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10.5" />
+            <Text fx:id="nTemp1" strokeType="OUTSIDE" strokeWidth="0.0" text=" º" />
             <Label text="   Presión: " />
-            <Text fx:id="nPressure" strokeType="OUTSIDE" strokeWidth="0.0" text="1013" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" mbar" />
+            <Text fx:id="nPressure" strokeType="OUTSIDE" strokeWidth="0.0" text="1.0131" />
+            <Text fx:id="nPressure1" strokeType="OUTSIDE" strokeWidth="0.0" text=" B" />
          </children>
       </HBox>
    </children>

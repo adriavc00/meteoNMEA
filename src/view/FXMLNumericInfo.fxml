@@ -134,7 +134,7 @@
                   <Insets right="25.0" />
                </GridPane.margin>
                 </HBox>
-            <Button fx:id="b" mnemonicParsing="false" onAction="#cargarFichero2" text="Button" GridPane.columnIndex="1" />
+            <Button fx:id="b" mnemonicParsing="false" onAction="#cargarFichero2" text="cargar fichero" GridPane.columnIndex="1" />
             </children>
         </GridPane>
     </children>

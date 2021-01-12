@@ -35,7 +35,7 @@ import net.sf.marineapi.nmea.util.Position;
  *
  * @author jsoler
  */
-public class FXMLMainController implements Initializable {
+public class FXMLExampleController implements Initializable {
 
     @FXML
     private Button button;

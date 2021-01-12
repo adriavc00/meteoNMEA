@@ -1,0 +1,12 @@
+/*
+    Created on : 12 ene. 2021, 15:18:54
+    Author     : ADRIA - LP
+*/
+
+.header {
+    -fx-background-color: black;
+}
+
+.text {
+    -fx-text-fill: white;
+}

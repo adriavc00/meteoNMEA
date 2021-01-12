@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,14 +12,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNumericInfoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNumericInfoController">
     <children>
-        <GridPane VBox.vgrow="ALWAYS">
+        <GridPane hgap="10.0" vgap="10.0" VBox.vgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="350.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="340.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="170.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="170.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -40,7 +41,7 @@
                 </Label>
                 <Label text="PRESIÓN" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowSpan="2">
                     <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets right="25.0" />
                     </GridPane.margin>
                     <font>
                         <Font size="20.0" />
@@ -48,7 +49,7 @@
                 </Label>
                 <Label text="VIENTO" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                     <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets right="25.0" />
                     </GridPane.margin>
                     <font>
                         <Font size="20.0" />
@@ -56,73 +57,84 @@
                 </Label>
                 <Label alignment="TOP_CENTER" text="Velocidad" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
                     <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets right="25.0" />
                     </GridPane.margin>
                 </Label>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="355.0" GridPane.rowIndex="1" GridPane.rowSpan="7">
+                <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="322.0" GridPane.rowIndex="1" GridPane.rowSpan="7">
                     <children>
-                        <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+                        <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10.0">
                             <font>
-                                <Font size="250.0" />
+                                <Font size="150.0" />
                             </font>
                         </Text>
-                        <Label alignment="TOP_CENTER" prefHeight="300.0" text="º">
+                        <Label alignment="TOP_CENTER" prefHeight="225.0" text="º">
                             <font>
                                 <Font size="80.0" />
                             </font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.rowSpan="3">
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.rowSpan="3">
                     <children>
-                        <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35">
+                        <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5">
                             <font>
-                                <Font size="80.0" />
+                                <Font size="60.0" />
                             </font>
                         </Text>
-                        <Label alignment="TOP_LEFT" prefHeight="90.0" text="º">
+                        <Label alignment="TOP_LEFT" prefHeight="80.0" text="º">
                             <font>
                                 <Font size="30.0" />
                             </font>
                         </Label>
                     </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
                 </HBox>
                 <Label alignment="TOP_CENTER" text="Dirección" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
                     <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets right="25.0" />
                     </GridPane.margin>
                 </Label>
-                <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="350.0" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3">
+                <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="350.0" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3">
                     <children>
-                        <Text fx:id="nPressure" strokeType="OUTSIDE" strokeWidth="0.0" text="1013">
-                            <font>
-                                <Font size="100.0" />
-                            </font>
-                        </Text>
-                        <Label alignment="BOTTOM_CENTER" prefHeight="120.0" text="mbar">
-                            <font>
-                                <Font size="40.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets right="20.0" />
-                            </HBox.margin>
-                        </Label>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="310.0" HBox.hgrow="ALWAYS">
+                     <children>
+                              <Text fx:id="nPressure" layoutX="39.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.0131">
+                                  <font>
+                                      <Font size="80.0" />
+                                  </font>
+                              </Text>
+                              <Label alignment="BOTTOM_CENTER" layoutX="275.0" layoutY="15.0" prefHeight="90.0" text="B">
+                                  <font>
+                                      <Font size="35.0" />
+                                  </font>
+                              </Label>
+                     </children>
+                  </AnchorPane>
                     </children>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="3">
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="3">
                     <children>
-                        <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62">
+                        <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5">
                             <font>
-                                <Font size="80.0" />
+                                <Font size="60.0" />
                             </font>
                         </Text>
-                        <Label alignment="BOTTOM_LEFT" prefHeight="75.0" text="Kn">
+                        <Label alignment="BOTTOM_LEFT" prefHeight="65.0" text="Kn">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
                     </children>
+               <GridPane.margin>
+                  <Insets right="25.0" />
+               </GridPane.margin>
                 </HBox>
+            <Button fx:id="b" mnemonicParsing="false" onAction="#cargarFichero2" text="Button" GridPane.columnIndex="1" />
             </children>
         </GridPane>
     </children>

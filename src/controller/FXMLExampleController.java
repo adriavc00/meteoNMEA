@@ -84,7 +84,7 @@ public class FXMLExampleController implements Initializable {
                 twsLabel.setText(dat);
             });
         });
-
+        
     }
 
     @FXML

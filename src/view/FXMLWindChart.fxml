@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLWindChartController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="335.0" HBox.hgrow="SOMETIMES">
+               <children>
+                  <LineChart fx:id="chartDirection">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="345.0">
+               <children>
+                  <LineChart fx:id="chartSpeed" VBox.vgrow="SOMETIMES">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Slider fx:id="slider" majorTickUnit="1.0" max="10.0" min="5.0" showTickLabels="true" showTickMarks="true" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="  TWD: " />
+            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="º" />
+            <Label text="   TWS: " />
+            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Kn" />
+            <Label text="   TEMP: " />
+            <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="º" />
+            <Label text="   Presión: " />
+            <Text fx:id="nPressure" strokeType="OUTSIDE" strokeWidth="0.0" text="1013" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" mbar" />
+         </children>
+      </HBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets left="10.0" right="10.0" />
+   </padding>
+</VBox>

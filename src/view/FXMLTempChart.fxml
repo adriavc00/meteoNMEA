@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLTempChartController">
+   <children>
+      <LineChart fx:id="chartDirection">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Slider fx:id="slider" majorTickUnit="1.0" max="10.0" maxHeight="-Infinity" maxWidth="-Infinity" min="5.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="640.0" showTickLabels="true" showTickMarks="true" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets right="5.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="  TWD: " />
+            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5 º" />
+            <Label text="   TWS: " />
+            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5 Kn" />
+            <Label text="   TEMP: " />
+            <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10.5" />
+            <Text fx:id="nTemp1" strokeType="OUTSIDE" strokeWidth="0.0" text=" º" />
+            <Label text="   Presión: " />
+            <Text fx:id="nPressure" strokeType="OUTSIDE" strokeWidth="0.0" text="1.0131" />
+            <Text fx:id="nPressure1" strokeType="OUTSIDE" strokeWidth="0.0" text=" B" />
+         </children>
+      </HBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets left="10.0" right="10.0" />
+   </padding>
+</VBox>

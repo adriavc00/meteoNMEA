@@ -7,6 +7,10 @@
     -fx-background-color: black;
 }
 
-.text {
-    -fx-text-fill: white;
+.header-text {
+    -fx-fill: white;
+}
+
+.label {
+    -fx-text-fill: black;
 }

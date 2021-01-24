@@ -11,7 +11,6 @@ import javafx.stage.StageStyle;
 /**
  * Main class of the application. It contains the launcher of the main graphical container.
  *
- * @author jsoler
  * @author Adrià V. C.
  * @author Felipe Z. M.
  */
@@ -28,7 +27,7 @@ public class MeteoNMEA extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
 
-        stage.setOnCloseRequest((event) -> {
+        stage.setOnHiding((event) -> {
             Platform.exit();
             System.exit(0);
         });

@@ -92,7 +92,6 @@ public class FXMLMainController implements Initializable {
     @FXML
     private void exit(MouseEvent event) {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-        System.exit(0);
     }
 
 }

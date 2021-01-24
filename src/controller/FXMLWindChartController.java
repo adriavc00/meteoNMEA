@@ -10,6 +10,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.Model;
 
@@ -51,17 +53,38 @@ public class FXMLWindChartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         model = Model.getInstance();
-        model.setSizeWindChart(600);
+        //int size;
+        
+        /*SALE ERROR TOCHO
+        slider.valueProperty().addListener((a, b, c) -> {
+            int size = (int) c * 60; 
+            System.out.println(size);
+            model.setSizeWindChart(size);
+        });*/
+        
+        model.setSizeWindChart(300);
+        
         chartDirectionSerie = model.getTWDSerie();
-        chartDirectionSerie.setName("TWD");
+        chartDirectionSerie.setName("Dirección (º)");
+        
         chartSpeedSerie = model.getTWSSerie();
-        chartSpeedSerie.setName("TWS");
+        chartSpeedSerie.setName("Velocidad (Kn)");
+
+        
+        chartDirection.getXAxis().setTickLabelsVisible(false);
+        chartDirection.getXAxis().setTickMarkVisible(false);
+        //chartDirection.getXAxis().setOpacity(0);
+        //chartDirection.getXAxis().setLabel("Dirección");
+        
+        chartSpeed.getXAxis().setTickLabelsVisible(false);
+        chartSpeed.getXAxis().setTickMarkVisible(false);
+        //chartSpeed.getXAxis().setOpacity(0);
+       //chartSpeed.getXAxis().setLabel("Velocidad");
         
         chartDirection.getData().add(chartDirectionSerie);
         chartSpeed.getData().add(chartSpeedSerie);
         
         //INFORMACIÓN NUMÉRICA
-        model = Model.getInstance();
         
         model.barometricPressureProperty().addListener((a, b, c) -> {
             String dat = String.valueOf(c);
@@ -96,6 +119,17 @@ public class FXMLWindChartController implements Initializable {
         double vSlider = slider.getValue();
         vSlider *= 60;
         int res = (int) vSlider;
+        System.out.println(res);
+        model.setSizeWindChart(res);
+        
+    }
+
+    @FXML
+    private void changeMinutes(MouseEvent event) {
+        double vSlider = slider.getValue();
+        vSlider *= 60;
+        int res = (int) vSlider;
+        System.out.println(res);
         model.setSizeWindChart(res);
         
     }

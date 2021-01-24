@@ -31,6 +31,7 @@ public class FXMLMainController implements Initializable {
     private Node numInfo;
     private Node tempChart;
     private Node windChart;
+    private Node pressureChart;
 
     @FXML
     private BorderPane mainPane;
@@ -87,6 +88,10 @@ public class FXMLMainController implements Initializable {
             
             this.windChart = customLoader.load();
             
+            customLoader = new FXMLLoader(
+                    getClass().getResource("/view/FXMLPressureChart.fxml"));
+            
+            this.pressureChart = customLoader.load();
             
         } catch (IOException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,7 +158,7 @@ public class FXMLMainController implements Initializable {
     @FXML
     private void pressureScene(ActionEvent event) {
         //FALTA DE HACER EL FXML
-        
+        mainPane.setCenter(pressureChart);
         numericButton.setDisable(false);
         tempButton.setDisable(false);
         windButton.setDisable(false);

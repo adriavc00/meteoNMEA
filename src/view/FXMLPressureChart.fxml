@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLTempChartController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLPressureChartController">
    <children>
-      <LineChart fx:id="chartTemp">
+      <LineChart fx:id="chartPressure">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -34,9 +34,11 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label text="  TWD: " />
-            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5 º" />
+            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5" />
+            <Text fx:id="nDirection1" strokeType="OUTSIDE" strokeWidth="0.0" text=" º" />
             <Label text="   TWS: " />
-            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5 Kn" />
+            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5" />
+            <Text fx:id="nDirection2" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kn" />
             <Label text="   TEMP: " />
             <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10.5" />
             <Text fx:id="nTemp1" strokeType="OUTSIDE" strokeWidth="0.0" text=" º" />

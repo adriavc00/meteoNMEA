@@ -17,9 +17,12 @@ import model.Model;
  *
  * @author lipez
  */
-public class FXMLTempChartController implements Initializable {
+public class FXMLPressureChartController implements Initializable {
 
-    private XYChart.Series<String, Number> chartTempSerie;
+    private Model model;
+    private XYChart.Series<String, Number> chartPressureSerie;
+    @FXML
+    private LineChart<String, Number> chartPressure;
     @FXML
     private Slider slider;
     @FXML
@@ -34,10 +37,10 @@ public class FXMLTempChartController implements Initializable {
     private Text nPressure;
     @FXML
     private Text nPressure1;
-    
-    private Model model;
     @FXML
-    private LineChart<String, Number> chartTemp;
+    private Text nDirection1;
+    @FXML
+    private Text nDirection2;
 
     /**
      * Initializes the controller class.
@@ -46,11 +49,12 @@ public class FXMLTempChartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         model = Model.getInstance();
-        model.setSizeTempChart(300);
-        chartTempSerie = model.getTempSerie();
-        chartTempSerie.setName("Temperatura");
+        model.setSizePressureChart(300);
+        chartPressureSerie = model.getPressureSerie();
+        chartPressureSerie.setName("Presión");
         
-        chartTemp.getData().add(chartTempSerie);
+        
+        chartPressure.getData().add(chartPressureSerie);
         
         model.barometricPressureProperty().addListener((a, b, c) -> {
             String dat = String.valueOf(c);
@@ -82,8 +86,6 @@ public class FXMLTempChartController implements Initializable {
 
     @FXML
     private void changeMinutes(DragEvent event) {
-        double res = slider.getValue();
-        //FALTA HACER EL SETSIZE DE TEMP
     }
     
 }

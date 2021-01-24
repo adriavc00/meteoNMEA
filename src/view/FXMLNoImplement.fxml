@@ -4,17 +4,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNoImplementController">
    <children>
       <Label text="X">
          <font>
-            <Font size="80.0" />
+            <Font size="100.0" />
          </font>
       </Label>
       <Label text="Elemento no implementado">
          <font>
-            <Font size="20.0" />
+            <Font size="30.0" />
          </font>
       </Label>
    </children>

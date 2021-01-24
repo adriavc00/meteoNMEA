@@ -40,13 +40,15 @@
             </VBox>
          </children>
       </HBox>
-      <Slider fx:id="slider" majorTickUnit="1.0" max="10.0" min="5.0" onDragDone="#changeMinutes" showTickLabels="true" showTickMarks="true" />
+      <Slider fx:id="slider" majorTickUnit="1.0" max="10.0" min="5.0" minorTickCount="5" onDragDone="#changeMinutes" onDragDropped="#changeMinutes" onMouseClicked="#changeMinutes" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label text="  TWD: " />
-            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5 º" />
+            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5" />
+            <Text fx:id="nTemp11" strokeType="OUTSIDE" strokeWidth="0.0" text=" º" />
             <Label text="   TWS: " />
-            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5 Kn" />
+            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5" />
+            <Text fx:id="nTemp12" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kn" />
             <Label text="   TEMP: " />
             <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10.5" />
             <Text fx:id="nTemp1" strokeType="OUTSIDE" strokeWidth="0.0" text=" º" />

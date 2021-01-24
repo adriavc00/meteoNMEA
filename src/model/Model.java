@@ -92,6 +92,50 @@ public class Model {
         return barometricUnit;
     }
 
+    // ESTRUCTURAS GRÁFICA TEMPERATURA
+    private XYChart.Series<String, Number> tempSerie = new XYChart.Series<>();
+
+    public XYChart.Series<String, Number> getTempSerie() {
+        return tempSerie;
+    }
+    private ObservableList<XYChart.Data<String, Number>> tempList = tempSerie.getData();
+    
+    private final IntegerProperty sizeDataTempChart = new SimpleIntegerProperty();
+
+    public int getSizeDateTempChart() {
+        return sizeDataTempChart.get();
+    }
+
+    public void setSizeTempChart(int value) {
+        sizeDataTempChart.set(value);
+    }
+
+    public IntegerProperty sizeDataTempChartProperty() {
+        return sizeDataTempChart;
+    }
+    
+    // ESTRUCTURAS GRÁFICA PRESIÓN
+    private XYChart.Series<String, Number> pressureSerie = new XYChart.Series<>();
+    
+    public XYChart.Series<String, Number> getPressureSerie() {
+        return pressureSerie;
+    }
+    
+     private ObservableList<XYChart.Data<String, Number>> pressureList = pressureSerie.getData();
+
+     private final IntegerProperty sizeDataPressureChart = new SimpleIntegerProperty();
+
+    public int getSizeDatePressureChart() {
+        return sizeDataPressureChart.get();
+    }
+
+    public void setSizePressureChart(int value) {
+        sizeDataPressureChart.set(value);
+    }
+
+    public IntegerProperty sizeDataPressureChartProperty() {
+        return sizeDataPressureChart;
+    }
     //==================================================================
     // estructuras para las graficas de viento
     // TWDSerie -- serie de datos de la direccion del viento TWD
@@ -150,6 +194,20 @@ public class Model {
                 TWSList.remove(0);
             }
             //================================================================
+            
+            //Gestionar datos temperatura gráfica
+            tempList.add(new XYChart.Data<>(LocalDateTime.now().format(
+                    DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)), TEMP.get()));
+            while (tempList.size() > sizeDataTempChart.intValue()) {
+                tempList.remove(0);
+            }
+            
+            //Gestionar datos presión gráfica
+            pressureList.add(new XYChart.Data<>(LocalDateTime.now().format(
+                    DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)), barometricPressure.get()));
+            while (pressureList.size() > sizeDataPressureChart.intValue()) {
+                pressureList.remove(0);
+            }
         }
     }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -134,7 +133,6 @@
                   <Insets right="25.0" />
                </GridPane.margin>
                 </HBox>
-            <Button fx:id="b" mnemonicParsing="false" onAction="#cargarFichero2" text="cargar fichero" GridPane.columnIndex="1" />
             </children>
         </GridPane>
     </children>

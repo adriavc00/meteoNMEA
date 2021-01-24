@@ -3,15 +3,14 @@ package controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import model.Model;
 
 /**
@@ -21,6 +20,8 @@ import model.Model;
  */
 public class FXMLNumericInfoController implements Initializable {
 
+    private static final String DEFAULT_FILE_PATH = "src/files/Jul_20_2017_0183.NMEA";
+
     @FXML
     private Text nTemp;
     @FXML
@@ -29,10 +30,10 @@ public class FXMLNumericInfoController implements Initializable {
     private Text nPressure;
     @FXML
     private Text nSpeed;
-    
+
     private Model model;
-    
     private File file;
+
     @FXML
     private Button b;
 
@@ -44,8 +45,12 @@ public class FXMLNumericInfoController implements Initializable {
         // TODO
         model = Model.getInstance();
 
-        cargarFichero();
-        
+        try {
+            cargarFichero();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         //==================================================================
         // anyadimos listener para que cuando cambie el valor en el modelo
         //se actualice su valor en su correspondiente representacion grafica
@@ -76,21 +81,20 @@ public class FXMLNumericInfoController implements Initializable {
             });
         });
     }
-    
 
-    private void cargarFichero() {
-            try{
-                file = new File("/files/Jul_20_2017_0183.NMEA");
-                model.addSentenceReader(file);
-            } catch (FileNotFoundException e) {}
+    private void cargarFichero() throws FileNotFoundException {
+        file = new File(DEFAULT_FILE_PATH);
+        model.addSentenceReader(file);
     }
 
+    /*
     @FXML
     private void cargarFichero2(ActionEvent event) throws FileNotFoundException {
         FileChooser ficheroChooser = new FileChooser();
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         ficheroChooser.setInitialDirectory(new File(currentPath));
-        ficheroChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("ficheros NMEA", "*.NMEA"));
+        ficheroChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("ficheros NMEA",
+                                                                                 "*.NMEA"));
 
 //        ficheroChooser.setSelectedExtensionFilter(new ExtensionFilter("ficheros NMEA", "*.NMEA"));
         ficheroChooser.setTitle("fichero datos NMEA");
@@ -106,5 +110,5 @@ public class FXMLNumericInfoController implements Initializable {
             model.addSentenceReader(ficheroNMEA);
         }
     }
-
+     */
 }

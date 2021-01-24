@@ -40,7 +40,7 @@
             </VBox>
          </children>
       </HBox>
-      <Slider fx:id="slider" majorTickUnit="1.0" max="10.0" min="5.0" showTickLabels="true" showTickMarks="true" />
+      <Slider fx:id="slider" majorTickUnit="1.0" max="10.0" min="5.0" onDragDone="#changeMinutes" showTickLabels="true" showTickMarks="true" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label text="  TWD: " />

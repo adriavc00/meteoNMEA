@@ -2,11 +2,14 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Slider;
+import javafx.scene.input.DragEvent;
 import javafx.scene.text.Text;
+import model.Model;
 
 /**
  * FXML Controller class
@@ -31,6 +34,8 @@ public class FXMLTempChartController implements Initializable {
     private Text nPressure;
     @FXML
     private Text nPressure1;
+    
+    private Model model;
 
     /**
      * Initializes the controller class.
@@ -38,6 +43,40 @@ public class FXMLTempChartController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        model = Model.getInstance();
+        
+        model.barometricPressureProperty().addListener((a, b, c) -> {
+            String dat = String.valueOf(c);
+            // + " " + model.getBarometricUnit()
+            Platform.runLater(() -> {
+                nPressure.setText(dat);
+            });
+        });
+        model.TEMPProperty().addListener((a, b, c) -> {
+            String dat = String.valueOf(c);
+            Platform.runLater(() -> {
+                nTemp.setText(dat);
+            });
+        });
+
+        model.TWDProperty().addListener((a, b, c) -> {
+            String dat = String.valueOf(c);
+            Platform.runLater(() -> {
+                nDirection.setText(dat);
+            });
+        });
+        model.TWSProperty().addListener((a, b, c) -> {
+            String dat = String.valueOf(c);
+            Platform.runLater(() -> {
+                nSpeed.setText(dat);
+            });
+        });
     }    
+
+    @FXML
+    private void changeMinutes(DragEvent event) {
+        double res = slider.getValue();
+        //FALTA HACER EL SETSIZE DE TEMP
+    }
     
 }

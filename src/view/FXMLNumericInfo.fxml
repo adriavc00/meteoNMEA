@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNumericInfoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNumericInfoController">
     <children>
         <GridPane hgap="10.0" vgap="10.0" VBox.vgrow="ALWAYS">
             <columnConstraints>
@@ -62,7 +62,7 @@
                 </Label>
                 <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="322.0" GridPane.rowIndex="1" GridPane.rowSpan="7">
                     <children>
-                        <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10.0">
+                        <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="10.0">
                             <font>
                                 <Font size="150.0" />
                             </font>
@@ -76,7 +76,7 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.rowSpan="3">
                     <children>
-                        <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5">
+                        <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="35.5">
                             <font>
                                 <Font size="60.0" />
                             </font>
@@ -100,7 +100,7 @@
                     <children>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="310.0" HBox.hgrow="ALWAYS">
                      <children>
-                              <Text fx:id="nPressure" layoutX="39.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.0131">
+                              <Text fx:id="nPressure" layoutX="39.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="1.0131">
                                   <font>
                                       <Font size="80.0" />
                                   </font>
@@ -119,7 +119,7 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="3">
                     <children>
-                        <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5">
+                        <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="62.5">
                             <font>
                                 <Font size="60.0" />
                             </font>

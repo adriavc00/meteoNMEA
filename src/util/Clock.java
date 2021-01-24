@@ -71,13 +71,13 @@ public class Clock extends Task<Void> {
             case TUESDAY:
                 return "martes";
             case WEDNESDAY:
-                return "miercoles";
+                return "miércoles";
             case THURSDAY:
                 return "jueves";
             case FRIDAY:
                 return "viernes";
             case SATURDAY:
-                return "sabado";
+                return "sábado";
             case SUNDAY:
                 return "domingo";
             default:

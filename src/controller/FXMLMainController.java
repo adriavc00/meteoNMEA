@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -34,19 +36,34 @@ public class FXMLMainController implements Initializable {
     private Text date;
     @FXML
     private Text day;
+    @FXML
+    private ToggleButton themeToggle;
+    @FXML
+    private Text statusText;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Set default theme
+        String theme;
+        if (LocalTime.now().isAfter(LocalTime.of(18, 30))) {
+            theme = "darkTheme";
+            themeToggle.setSelected(true);
+        } else {
+            theme = "lightTheme";
+            themeToggle.setSelected(false);
+        }
+        mainPane.getStylesheets().add(
+                getClass().getResource("/resources/css/" + theme + ".css").toExternalForm());
         // Clock initialization
         clock.initClock();
-        // LOAD Center Nodes
+        // Load Center Nodes
         try {
-            FXMLLoader numLoader = new FXMLLoader(
+            FXMLLoader customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLNumericInfo.fxml"));
-            this.numInfo = numLoader.load();
+            this.numInfo = customLoader.load();
         } catch (IOException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,11 +73,26 @@ public class FXMLMainController implements Initializable {
         time.textProperty().bind(clock.timeProperty());
         date.textProperty().bind(clock.dateProperty());
         day.textProperty().bind(clock.dayProperty());
+        // Listeners
+        themeToggle.selectedProperty().addListener((observable, oldV, newV) -> {
+            if (newV) {
+                mainPane.getStylesheets().remove(
+                        getClass().getResource("/resources/css/lightTheme.css").toExternalForm());
+                mainPane.getStylesheets().add(
+                        getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
+            } else {
+                mainPane.getStylesheets().add(
+                        getClass().getResource("/resources/css/lightTheme.css").toExternalForm());
+                mainPane.getStylesheets().remove(
+                        getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
+            }
+        });
     }
 
     @FXML
     private void exit(MouseEvent event) {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        System.exit(0);
     }
 
 }

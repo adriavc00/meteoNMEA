@@ -1,7 +1,7 @@
 package meteonmea;
 
-import java.time.LocalTime;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,19 +22,16 @@ public class MeteoNMEA extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/view/FXMLMain.fxml"));
 
         Scene scene = new Scene(root);
-        String theme = (LocalTime.now().isAfter(LocalTime.of(18, 0))) ? "darkTheme" : "lightTheme";
-        scene.setUserAgentStylesheet(
-                getClass().getResource("/resources/css/" + theme + ".css").toExternalForm());
-
         stage.setScene(scene);
         stage.setWidth(800);
         stage.setHeight(480);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
+
         stage.setOnCloseRequest((event) -> {
+            Platform.exit();
             System.exit(0);
         });
-
     }
 
     /**

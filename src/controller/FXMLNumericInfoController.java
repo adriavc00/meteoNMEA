@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import model.Model;
 
@@ -21,6 +20,7 @@ import model.Model;
 public class FXMLNumericInfoController implements Initializable {
 
     private static final String DEFAULT_FILE_PATH = "src/files/Jul_20_2017_0183.NMEA";
+    private static final int PRESSURE_CHARS = 6;
 
     @FXML
     private Text nTemp;
@@ -32,17 +32,12 @@ public class FXMLNumericInfoController implements Initializable {
     private Text nSpeed;
 
     private Model model;
-    private File file;
-
-    @FXML
-    private Button b;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         model = Model.getInstance();
 
         try {
@@ -53,12 +48,13 @@ public class FXMLNumericInfoController implements Initializable {
 
         //==================================================================
         // anyadimos listener para que cuando cambie el valor en el modelo
-        //se actualice su valor en su correspondiente representacion grafica
+        // se actualice su valor en su correspondiente representacion grafica
         model.barometricPressureProperty().addListener((a, b, c) -> {
             String dat = String.valueOf(c);
+            String dat0 = dat + "0"; // Variable separada por funcionamiento de lambda.
             // + " " + model.getBarometricUnit()
             Platform.runLater(() -> {
-                nPressure.setText(dat);
+                nPressure.setText((dat.length() < PRESSURE_CHARS) ? dat0 : dat);
             });
         });
         model.TEMPProperty().addListener((a, b, c) -> {
@@ -83,7 +79,7 @@ public class FXMLNumericInfoController implements Initializable {
     }
 
     private void cargarFichero() throws FileNotFoundException {
-        file = new File(DEFAULT_FILE_PATH);
+        File file = new File(DEFAULT_FILE_PATH);
         model.addSentenceReader(file);
     }
 

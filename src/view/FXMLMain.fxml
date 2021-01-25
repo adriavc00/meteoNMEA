@@ -69,22 +69,22 @@
     <left>
           <VBox fx:id="toolbar" alignment="CENTER" prefHeight="405.0" prefWidth="100.0" spacing="50.0" styleClass="toolbar">
               <children>
-                  <Button fx:id="numericButton" mnemonicParsing="false" onAction="#numericScene" prefHeight="40.0" prefWidth="80.0" text="Informacion numérica" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="numericButton" mnemonicParsing="false" onAction="#numericScene" prefHeight="45.0" prefWidth="50.0" textAlignment="CENTER" wrapText="true">
                       <font>
                           <Font size="11.0" />
                       </font>
                   </Button>
-            <Button fx:id="windButton" mnemonicParsing="false" onAction="#windScene" prefHeight="40.0" prefWidth="80.0" text="Variación viento" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="windButton" mnemonicParsing="false" onAction="#windScene" prefHeight="45.0" prefWidth="50.0" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-                  <Button fx:id="tempButton" mnemonicParsing="false" onAction="#tempScene" prefHeight="40.0" prefWidth="80.0" text="Variación temperatura" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="tempButton" mnemonicParsing="false" onAction="#tempScene" prefHeight="45.0" prefWidth="50.0" textAlignment="CENTER" wrapText="true">
                       <font>
                           <Font size="11.0" />
                       </font>
                   </Button>
-                  <Button fx:id="pressureButton" mnemonicParsing="false" onAction="#pressureScene" prefHeight="40.0" prefWidth="80.0" text="Variación presión" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="pressureButton" mnemonicParsing="false" onAction="#pressureScene" prefHeight="45.0" prefWidth="50.0" textAlignment="CENTER" wrapText="true">
                       <font>
                           <Font size="11.0" />
                       </font>

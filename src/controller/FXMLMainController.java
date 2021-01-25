@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -79,12 +80,15 @@ public class FXMLMainController implements Initializable {
         if (LocalTime.now().isAfter(LocalTime.of(18, 30))) {
             theme = "darkTheme";
             themeToggle.setSelected(true);
+            currentTheme = Theme.DARK_THEME;
         } else {
             theme = "lightTheme";
             themeToggle.setSelected(false);
+            currentTheme = Theme.LIGHT_THEME;
         }
         mainPane.getStylesheets().add(
                 getClass().getResource("/resources/css/" + theme + ".css").toExternalForm());
+        initializeIcons();
         // Clock initialization
         clock.initClock();
         // Load Center Nodes
@@ -118,13 +122,12 @@ public class FXMLMainController implements Initializable {
                     getClass().getResource("/view/FXMLNoImplement.fxml"));
             this.noImplement = customLoader.load();
             controllers.put("noImplement", customLoader.getController());
-
         } catch (IOException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
         // Set default center node
         mainPane.setCenter(numInfo);
-
+        // Initial toolbar configuration
         numericButton.setDisable(true);
         tempButton.setDisable(false);
         windButton.setDisable(false);
@@ -141,12 +144,14 @@ public class FXMLMainController implements Initializable {
                 mainPane.getStylesheets().add(
                         getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
                 currentTheme = Theme.DARK_THEME;
+                initializeIcons();
             } else {
                 mainPane.getStylesheets().add(
                         getClass().getResource("/resources/css/lightTheme.css").toExternalForm());
                 mainPane.getStylesheets().remove(
                         getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
                 currentTheme = Theme.LIGHT_THEME;
+                initializeIcons();
             }
         });
     }
@@ -163,17 +168,44 @@ public class FXMLMainController implements Initializable {
     public void setNoImplementCenter() {
         this.mainPane.setCenter(noImplement);
         this.statusText.setText("");
-        ((FXMLConfigurationController) controllers.get("noImplement")).setMainController(this);
+        ((FXMLNoImplementController) controllers.get("noImplement")).setMainController(this);
     }
 
     public void setNumericCenter() {
         this.restoreToolbar();
+        numericButton.setDisable(false);
         numericButton.fire();
+        confButton.setImage(new Image("/resources/images/white_connection_icon.png"));
+        confButton.setOnMouseClicked(this::configurationScene);
     }
 
     private void restoreToolbar() {
         this.mainPane.setLeft(toolbar);
         ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().add("toolbar");
+    }
+
+    private void initializeIcons() {
+        switch (this.currentTheme) {
+            case DARK_THEME:
+                numericButton.setGraphic(new ImageView(new Image(
+                        "/resources/images/white_num_icon.png", 40, 40, false, false)));
+                tempButton.setGraphic(new ImageView(new Image(
+                        "/resources/images/white_temperature_icon.png", 40, 40, false, false)));
+                windButton.setGraphic(new ImageView(new Image(
+                        "/resources/images/white_wind_icon.png", 40, 40, false, false)));
+                pressureButton.setGraphic(new ImageView(new Image(
+                        "/resources/images/white_pressure_icon.png", 40, 40, false, false)));
+                break;
+            case LIGHT_THEME:
+                numericButton.setGraphic(new ImageView(new Image(
+                        "/resources/images/black_num_icon.png", 40, 40, false, false)));
+                tempButton.setGraphic(new ImageView(new Image(
+                        "/resources/images/black_temperature_icon.png", 40, 40, false, false)));
+                windButton.setGraphic(new ImageView(new Image(
+                        "/resources/images/black_wind_icon.png", 40, 40, false, false)));
+                pressureButton.setGraphic(new ImageView(new Image(
+                        "/resources/images/black_pressure_icon.png", 40, 40, false, false)));
+        }
     }
 
     @FXML
@@ -228,11 +260,12 @@ public class FXMLMainController implements Initializable {
 
     @FXML
     private void configurationScene(MouseEvent event) {
+        confButton.setImage(new Image("/resources/images/white_home_icon.png"));
+        confButton.setOnMouseClicked((e) -> this.setNumericCenter());
         mainPane.setLeft(null);
         ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().remove("toolbar");
         mainPane.setCenter(configuration);
         statusText.setText("Configuración");
         ((FXMLConfigurationController) controllers.get("configuration")).setMainController(this);
     }
-
 }

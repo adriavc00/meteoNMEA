@@ -29,13 +29,16 @@ public class FXMLNoImplementController implements Initializable {
 
     public void setMainController(FXMLMainController mainController) {
         this.mainController = mainController;
-        // Init logos
+        initializeIcons();
+    }
+
+    private void initializeIcons() {
         switch (this.mainController.getTheme()) {
             case DARK_THEME:
-                crossIcon.imageProperty().set(new Image("/resources/images/white_cross_icon.png"));
+                crossIcon.setImage(new Image("/resources/images/white_cross_icon.png"));
                 break;
             case LIGHT_THEME:
-                crossIcon.imageProperty().set(new Image("/resources/images/black_cross_icon.png"));
+                crossIcon.setImage(new Image("/resources/images/black_cross_icon.png"));
         }
     }
 

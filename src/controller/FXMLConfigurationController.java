@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import model.Model;
 
@@ -23,6 +25,10 @@ public class FXMLConfigurationController implements Initializable {
 
     private FXMLMainController mainController;
     private Model model;
+    @FXML
+    private ImageView cloudIcon;
+    @FXML
+    private ImageView simIcon;
 
     /**
      * Initializes the controller class.
@@ -39,9 +45,21 @@ public class FXMLConfigurationController implements Initializable {
      */
     public void setMainController(FXMLMainController mainController) {
         this.mainController = mainController;
+        initializeIcons();
     }
 
-    @FXML
+    private void initializeIcons() {
+        switch (this.mainController.getTheme()) {
+            case DARK_THEME:
+                cloudIcon.setImage(new Image("/resources/images/white_cloud_icon.png"));
+                simIcon.setImage(new Image("/resources/images/white_file_icon.png"));
+                break;
+            case LIGHT_THEME:
+                cloudIcon.setImage(new Image("/resources/images/black_cloud_icon.png"));
+                simIcon.setImage(new Image("/resources/images/black_file_icon.png"));
+        }
+    }
+
     private void toFileChooser(ActionEvent event) {
         FileChooser ficheroChooser = new FileChooser();
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
@@ -70,7 +88,6 @@ public class FXMLConfigurationController implements Initializable {
         mainController.setNumericCenter();
     }
 
-    @FXML
     private void toNotImplemented(ActionEvent event) {
         mainController.setNoImplementCenter();
     }

@@ -46,16 +46,11 @@
                   </VBox>
                </children>
             </HBox>
-                <ButtonBar prefHeight="35.0" prefWidth="123.0">
+                <ButtonBar prefHeight="40.0" prefWidth="98.0">
                     <buttons>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" onMouseClicked="#configurationScene" pickOnBounds="true">
+                        <ImageView fx:id="confButton" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#configurationScene" pickOnBounds="true">
                             <image>
                                 <Image url="@../resources/images/white_connection_icon.png" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
-                            <image>
-                                <Image url="@../resources/images/white_home_icon.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="35.0" fitWidth="35.0" onMouseClicked="#exit" pickOnBounds="true">

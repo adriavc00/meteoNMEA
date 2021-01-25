@@ -1,9 +1,10 @@
 package controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,14 +15,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import util.Clock;
+import util.Theme;
 
 /**
  * FXML Controller class
@@ -30,13 +32,17 @@ import util.Clock;
  */
 public class FXMLMainController implements Initializable {
 
+    private final Map<String, Initializable> controllers = new HashMap<String, Initializable>(6);
     private final Clock clock = new Clock();
+
+    private Theme currentTheme;
 
     private Node numInfo;
     private Node tempChart;
     private Node windChart;
     private Node pressureChart;
     private Node configuration;
+    private Node noImplement;
 
     @FXML
     private BorderPane mainPane;
@@ -60,6 +66,8 @@ public class FXMLMainController implements Initializable {
     private Button pressureButton;
     @FXML
     private VBox toolbar;
+    @FXML
+    private ImageView confButton;
 
     /**
      * Initializes the controller class.
@@ -84,26 +92,32 @@ public class FXMLMainController implements Initializable {
             FXMLLoader customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLNumericInfo.fxml"));
             this.numInfo = customLoader.load();
+            controllers.put("numInfo", customLoader.getController());
 
             customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLTempChart.fxml"));
-
             this.tempChart = customLoader.load();
+            controllers.put("tempChart", customLoader.getController());
 
             customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLWindChart.fxml"));
-
             this.windChart = customLoader.load();
+            controllers.put("windChart", customLoader.getController());
 
             customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLPressureChart.fxml"));
-
             this.pressureChart = customLoader.load();
+            controllers.put("pressureChart", customLoader.getController());
 
             customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLConfiguration.fxml"));
-
             this.configuration = customLoader.load();
+            controllers.put("configuration", customLoader.getController());
+
+            customLoader = new FXMLLoader(
+                    getClass().getResource("/view/FXMLNoImplement.fxml"));
+            this.noImplement = customLoader.load();
+            controllers.put("noImplement", customLoader.getController());
 
         } catch (IOException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,20 +140,38 @@ public class FXMLMainController implements Initializable {
                         getClass().getResource("/resources/css/lightTheme.css").toExternalForm());
                 mainPane.getStylesheets().add(
                         getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
+                currentTheme = Theme.DARK_THEME;
             } else {
                 mainPane.getStylesheets().add(
                         getClass().getResource("/resources/css/lightTheme.css").toExternalForm());
                 mainPane.getStylesheets().remove(
                         getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
+                currentTheme = Theme.LIGHT_THEME;
             }
         });
     }
 
-    public void setNumericCenter() {
-        this.mainPane.setCenter(numInfo);
+    public Theme getTheme() {
+        return currentTheme;
     }
 
-    public void restoreToolbar() {
+    public void setConfigurationCenter() {
+        mainPane.setCenter(configuration);
+        statusText.setText("Configuración");
+    }
+
+    public void setNoImplementCenter() {
+        this.mainPane.setCenter(noImplement);
+        this.statusText.setText("");
+        ((FXMLConfigurationController) controllers.get("noImplement")).setMainController(this);
+    }
+
+    public void setNumericCenter() {
+        this.restoreToolbar();
+        numericButton.fire();
+    }
+
+    private void restoreToolbar() {
         this.mainPane.setLeft(toolbar);
         ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().add("toolbar");
     }
@@ -200,6 +232,7 @@ public class FXMLMainController implements Initializable {
         ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().remove("toolbar");
         mainPane.setCenter(configuration);
         statusText.setText("Configuración");
+        ((FXMLConfigurationController) controllers.get("configuration")).setMainController(this);
     }
 
 }

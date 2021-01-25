@@ -25,7 +25,7 @@ public class FXMLWindChartController implements Initializable {
     @FXML
     private LineChart<String, Number> chartDirection;
     private XYChart.Series<String, Number> chartDirectionSerie;
-    
+
     @FXML
     private LineChart<String, Number> chartSpeed;
     private XYChart.Series<String, Number> chartSpeedSerie;
@@ -39,7 +39,7 @@ public class FXMLWindChartController implements Initializable {
     private Text nTemp;
     @FXML
     private Text nPressure;
-    
+
     private Model model;
     @FXML
     private Text nTemp1;
@@ -58,40 +58,35 @@ public class FXMLWindChartController implements Initializable {
         // TODO
         model = Model.getInstance();
         //int size;
-        
-        
+
         slider.valueProperty().addListener((a, b, c) -> {
-            int size = (int)Math.round((double) c * 60); 
+            int size = (int) Math.round((double) c * 60);
             //System.out.println(size);
             model.setSizeWindChart(size);
         });
-        
+
         model.setSizeWindChart(300);
-        
+
         chartDirectionSerie = model.getTWDSerie();
         chartDirectionSerie.setName("Dirección (º)");
-        
+
         chartSpeedSerie = model.getTWSSerie();
         chartSpeedSerie.setName("Velocidad (Kn)");
 
-        
         //chartDirection.getXAxis().setAutoRanging(false);
-        
         //chartDirection.getXAxis().setTickLabelsVisible(false);
         //chartDirection.getXAxis().setTickMarkVisible(false);
         //chartDirection.getXAxis().setOpacity(0);
         //chartDirection.getXAxis().setLabel("Dirección");
-        
         chartSpeed.getXAxis().setTickLabelsVisible(false);
         chartSpeed.getXAxis().setTickMarkVisible(false);
         //chartSpeed.getXAxis().setOpacity(0);
-       //chartSpeed.getXAxis().setLabel("Velocidad");
-        
+        //chartSpeed.getXAxis().setLabel("Velocidad");
+
         chartDirection.getData().add(chartDirectionSerie);
         chartSpeed.getData().add(chartSpeedSerie);
-        
+
         //INFORMACIÓN NUMÉRICA
-        
         model.barometricPressureProperty().addListener((a, b, c) -> {
             String dat = String.valueOf(c);
             // + " " + model.getBarometricUnit()
@@ -118,6 +113,6 @@ public class FXMLWindChartController implements Initializable {
                 nSpeed.setText(dat);
             });
         });
-    }    
+    }
 
 }

@@ -29,7 +29,7 @@ public class FXMLConfigurationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        model = Model.getInstance();
+        this.model = Model.getInstance();
     }
 
     /**
@@ -72,6 +72,6 @@ public class FXMLConfigurationController implements Initializable {
 
     @FXML
     private void toNotImplemented(ActionEvent event) {
+        mainController.setNoImplementCenter();
     }
-
 }

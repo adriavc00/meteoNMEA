@@ -34,7 +34,7 @@ public class FXMLTempChartController implements Initializable {
     private Text nPressure;
     @FXML
     private Text nPressure1;
-    
+
     private Model model;
     @FXML
     private LineChart<String, Number> chartTemp;
@@ -46,19 +46,19 @@ public class FXMLTempChartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         model = Model.getInstance();
-        
+
         slider.valueProperty().addListener((a, b, c) -> {
-            int size = (int)Math.round((double) c * 60); 
+            int size = (int) Math.round((double) c * 60);
             //System.out.println(size);
             model.setSizeTempChart(size);
         });
-        
+
         model.setSizeTempChart(300);
         chartTempSerie = model.getTempSerie();
         chartTempSerie.setName("Temperatura");
-        
+
         chartTemp.getData().add(chartTempSerie);
-        
+
         model.barometricPressureProperty().addListener((a, b, c) -> {
             String dat = String.valueOf(c);
             // + " " + model.getBarometricUnit()
@@ -85,8 +85,6 @@ public class FXMLTempChartController implements Initializable {
                 nSpeed.setText(dat);
             });
         });
-    }    
+    }
 
-
-    
 }

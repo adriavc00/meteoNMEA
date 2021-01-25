@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNoImplementController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNoImplementController">
    <children>
-      <Label text="X">
-         <font>
-            <Font size="100.0" />
-         </font>
-      </Label>
-      <Label text="Elemento no implementado">
+      <ImageView fx:id="crossIcon" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+      <Label prefWidth="440.0" text="Modo de conexión a puerto serie NO IMPLEMENTADO en esta versión de la aplicación" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
+      <Button mnemonicParsing="false" onAction="#backToConfiguration" text="Volver" />
    </children>
 </VBox>

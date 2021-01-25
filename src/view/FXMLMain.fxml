@@ -72,7 +72,7 @@
         </HBox>
     </top>
     <left>
-          <VBox alignment="CENTER" prefHeight="405.0" prefWidth="100.0" spacing="50.0" styleClass="toolbar">
+          <VBox fx:id="toolbar" alignment="CENTER" prefHeight="405.0" prefWidth="100.0" spacing="50.0" styleClass="toolbar">
               <children>
                   <Button fx:id="numericButton" mnemonicParsing="false" onAction="#numericScene" prefHeight="40.0" prefWidth="80.0" text="Informacion numérica" textAlignment="CENTER" wrapText="true">
                       <font>

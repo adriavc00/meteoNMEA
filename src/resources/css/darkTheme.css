@@ -31,6 +31,10 @@
     -fx-text-fill: white;
 }
 
+.chart-legend-item {
+    -fx-text-fill: black;
+}
+
 .button {
     -fx-background-color: -button-color;
     -fx-background-radius: 10;

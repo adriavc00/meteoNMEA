@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
@@ -15,6 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import util.Clock;
@@ -32,6 +36,7 @@ public class FXMLMainController implements Initializable {
     private Node tempChart;
     private Node windChart;
     private Node pressureChart;
+    private Node configuration;
 
     @FXML
     private BorderPane mainPane;
@@ -53,6 +58,8 @@ public class FXMLMainController implements Initializable {
     private Button tempButton;
     @FXML
     private Button pressureButton;
+    @FXML
+    private VBox toolbar;
 
     /**
      * Initializes the controller class.
@@ -93,6 +100,11 @@ public class FXMLMainController implements Initializable {
 
             this.pressureChart = customLoader.load();
 
+            customLoader = new FXMLLoader(
+                    getClass().getResource("/view/FXMLConfiguration.fxml"));
+
+            this.configuration = customLoader.load();
+
         } catch (IOException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -121,6 +133,15 @@ public class FXMLMainController implements Initializable {
                         getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
             }
         });
+    }
+
+    public void setNumericCenter() {
+        this.mainPane.setCenter(numInfo);
+    }
+
+    public void restoreToolbar() {
+        this.mainPane.setLeft(toolbar);
+        ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().add("toolbar");
     }
 
     @FXML
@@ -175,6 +196,10 @@ public class FXMLMainController implements Initializable {
 
     @FXML
     private void configurationScene(MouseEvent event) {
+        mainPane.setLeft(null);
+        ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().remove("toolbar");
+        mainPane.setCenter(configuration);
+        statusText.setText("Configuración");
     }
 
 }

@@ -45,6 +45,10 @@ public class FXMLWindChartController implements Initializable {
     private Text nTemp1;
     @FXML
     private Text nPressure1;
+    @FXML
+    private Text nTemp11;
+    @FXML
+    private Text nTemp12;
 
     /**
      * Initializes the controller class.
@@ -55,12 +59,12 @@ public class FXMLWindChartController implements Initializable {
         model = Model.getInstance();
         //int size;
         
-        /*SALE ERROR TOCHO
+        
         slider.valueProperty().addListener((a, b, c) -> {
-            int size = (int) c * 60; 
-            System.out.println(size);
+            int size = (int)Math.round((double) c * 60); 
+            //System.out.println(size);
             model.setSizeWindChart(size);
-        });*/
+        });
         
         model.setSizeWindChart(300);
         
@@ -71,8 +75,10 @@ public class FXMLWindChartController implements Initializable {
         chartSpeedSerie.setName("Velocidad (Kn)");
 
         
-        chartDirection.getXAxis().setTickLabelsVisible(false);
-        chartDirection.getXAxis().setTickMarkVisible(false);
+        //chartDirection.getXAxis().setAutoRanging(false);
+        
+        //chartDirection.getXAxis().setTickLabelsVisible(false);
+        //chartDirection.getXAxis().setTickMarkVisible(false);
         //chartDirection.getXAxis().setOpacity(0);
         //chartDirection.getXAxis().setLabel("Dirección");
         
@@ -114,24 +120,4 @@ public class FXMLWindChartController implements Initializable {
         });
     }    
 
-    @FXML
-    private void changeMinutes(DragEvent event) {
-        double vSlider = slider.getValue();
-        vSlider *= 60;
-        int res = (int) vSlider;
-        System.out.println(res);
-        model.setSizeWindChart(res);
-        
-    }
-
-    @FXML
-    private void changeMinutes(MouseEvent event) {
-        double vSlider = slider.getValue();
-        vSlider *= 60;
-        int res = (int) vSlider;
-        System.out.println(res);
-        model.setSizeWindChart(res);
-        
-    }
-    
 }

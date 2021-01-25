@@ -46,6 +46,13 @@ public class FXMLTempChartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         model = Model.getInstance();
+        
+        slider.valueProperty().addListener((a, b, c) -> {
+            int size = (int)Math.round((double) c * 60); 
+            //System.out.println(size);
+            model.setSizeTempChart(size);
+        });
+        
         model.setSizeTempChart(300);
         chartTempSerie = model.getTempSerie();
         chartTempSerie.setName("Temperatura");
@@ -80,10 +87,6 @@ public class FXMLTempChartController implements Initializable {
         });
     }    
 
-    @FXML
-    private void changeMinutes(DragEvent event) {
-        double res = slider.getValue();
-        //FALTA HACER EL SETSIZE DE TEMP
-    }
+
     
 }

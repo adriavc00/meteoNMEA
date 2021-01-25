@@ -49,6 +49,13 @@ public class FXMLPressureChartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         model = Model.getInstance();
+        
+        slider.valueProperty().addListener((a, b, c) -> {
+            int size = (int)Math.round((double) c * 60); 
+            //System.out.println(size);
+            model.setSizePressureChart(size);
+        });
+        
         model.setSizePressureChart(300);
         chartPressureSerie = model.getPressureSerie();
         chartPressureSerie.setName("Presión");
@@ -84,8 +91,4 @@ public class FXMLPressureChartController implements Initializable {
         });
     }    
 
-    @FXML
-    private void changeMinutes(DragEvent event) {
-    }
-    
 }

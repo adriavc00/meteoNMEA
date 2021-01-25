@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMainController">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMainController">
     <top>
         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" spacing="10.0" styleClass="header">
             <children>
@@ -48,7 +48,7 @@
             </HBox>
                 <ButtonBar prefHeight="35.0" prefWidth="123.0">
                     <buttons>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
+                        <ImageView fitHeight="35.0" fitWidth="35.0" onMouseClicked="#configurationScene" pickOnBounds="true">
                             <image>
                                 <Image url="@../resources/images/white_connection_icon.png" />
                             </image>
@@ -112,7 +112,7 @@
                   <Insets />
                </HBox.margin>
             </Pane>
-            <Text fx:id="statusText" fill="GREY" strokeType="OUTSIDE" strokeWidth="0.0" text="Botonsicos" textOrigin="TOP">
+            <Text fx:id="statusText" fill="GREY" strokeType="OUTSIDE" strokeWidth="0.0" text="Información numérica | Simulación" textOrigin="TOP">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>

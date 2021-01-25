@@ -7,14 +7,6 @@
     -back-color: #3D3D3D;
     -bar-back-color: derive(-back-color, 20%);
     -button-color: derive(-bar-back-color, 50%);
-    /* Como se supone que es un dispositivo táctil el hover no tiene sentido.
-    -button-hover: ladder(
-        -button-color,
-        derive(-button-color, 20%) 20%,
-        derive(-button-color, 30%) 35%,
-        derive(-button-color, 40%) 50%
-        );
-    */
     -button-pressed: derive(-button-color, -20%);
     -fx-background-color: -back-color;
 }
@@ -58,11 +50,6 @@
     -fx-background-color: black;
 }
 
-/*
-.button:hover {
-    -fx-background-color: -button-hover;
-}
-*/
 
 .button:armed, button:pressed {
     -fx-border-color: derive(-button-pressed, 10%);

@@ -77,28 +77,28 @@ public class FXMLMainController implements Initializable {
             FXMLLoader customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLNumericInfo.fxml"));
             this.numInfo = customLoader.load();
-            
+
             customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLTempChart.fxml"));
-            
+
             this.tempChart = customLoader.load();
-            
+
             customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLWindChart.fxml"));
-            
+
             this.windChart = customLoader.load();
-            
+
             customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLPressureChart.fxml"));
-            
+
             this.pressureChart = customLoader.load();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
         // Set default center node
         mainPane.setCenter(numInfo);
-        
+
         numericButton.setDisable(true);
         tempButton.setDisable(false);
         windButton.setDisable(false);
@@ -135,6 +135,8 @@ public class FXMLMainController implements Initializable {
         tempButton.setDisable(false);
         windButton.setDisable(false);
         pressureButton.setDisable(false);
+        // Change status text
+        statusText.setText("Datos numéricos | Simulación");
     }
 
     @FXML
@@ -144,6 +146,8 @@ public class FXMLMainController implements Initializable {
         tempButton.setDisable(false);
         windButton.setDisable(true);
         pressureButton.setDisable(false);
+        // Change status text
+        statusText.setText("Variación del viento | Simulación");
     }
 
     @FXML
@@ -153,16 +157,24 @@ public class FXMLMainController implements Initializable {
         tempButton.setDisable(true);
         windButton.setDisable(false);
         pressureButton.setDisable(false);
+        // Change status text
+        statusText.setText("Variación de la temperatura | Simulación");
     }
 
     @FXML
     private void pressureScene(ActionEvent event) {
         //FALTA DE HACER EL FXML
-        mainPane.setCenter(pressureChart);
+
         numericButton.setDisable(false);
         tempButton.setDisable(false);
         windButton.setDisable(false);
         pressureButton.setDisable(true);
+        // Change status text
+        statusText.setText("Variación de la presión | Simulación");
+    }
+
+    @FXML
+    private void configurationScene(MouseEvent event) {
     }
 
 }

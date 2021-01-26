@@ -11,6 +11,10 @@
     -fx-background-color: -back-color;
 }
 
+.numeric-pane {
+    -fx-border-width: 2;
+}
+
 .header {
     -fx-background-color: black;
 }
@@ -27,12 +31,20 @@
     -fx-fill: white;
 }
 
-.chart-legend-item {
-    -fx-text-fill: black;
-}
-
 .label {
     -fx-text-fill: white;
+}
+
+.default-color0.chart-series-line {
+    -fx-stroke: black;
+}
+
+.chart-legend {
+    -fx-background-color: derive(-back-color, 30%);
+}
+
+.chart-legend-item-symbol {
+    -fx-background-color: black;
 }
 
 .button {
@@ -54,8 +66,11 @@
     -fx-background-color: black;
 }
 
-
 .button:armed, button:pressed {
     -fx-border-color: derive(-button-pressed, 10%);
     -fx-background-color: -button-pressed;
+}
+
+.num-line {
+    -fx-stroke: white;
 }

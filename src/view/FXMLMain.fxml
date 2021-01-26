@@ -67,7 +67,7 @@
         </HBox>
     </top>
     <left>
-          <VBox fx:id="toolbar" alignment="CENTER" prefHeight="405.0" prefWidth="100.0" spacing="50.0" styleClass="toolbar">
+          <VBox fx:id="toolbar" alignment="CENTER" prefHeight="384.0" prefWidth="80.0" spacing="50.0" styleClass="toolbar">
               <children>
                   <Button fx:id="numericButton" mnemonicParsing="false" onAction="#numericScene" prefHeight="45.0" prefWidth="50.0" textAlignment="CENTER" wrapText="true">
                       <font>
@@ -96,12 +96,12 @@
           </VBox>
     </left>
    <bottom>
-      <HBox alignment="BOTTOM_RIGHT" BorderPane.alignment="BOTTOM_RIGHT">
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="20.0" BorderPane.alignment="BOTTOM_RIGHT">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
          <children>
-            <Pane layoutX="671.0" layoutY="10.0" prefWidth="100.0" styleClass="toolbar" />
+            <Pane layoutX="671.0" layoutY="10.0" prefWidth="80.0" styleClass="toolbar" />
             <Pane prefHeight="16.0" prefWidth="74.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />

@@ -10,14 +10,14 @@
     <children>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
             <children>
-            <ImageView fx:id="cloudIcon" fitHeight="115.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cloudIcon" fitHeight="115.0" fitWidth="115.0" onMouseClicked="#toNotImplemented" pickOnBounds="true" preserveRatio="true" />
                 <Label prefWidth="80.0" text="Conexión a puerto serie" wrapText="true" />
             </children>
         </VBox>
         <Line endX="111.77841186523438" endY="687.5858154296875" fill="BLACK" startX="109.36419677734375" startY="389.55743408203125" stroke="#8a8a8a" />
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
             <children>
-            <ImageView fx:id="simIcon" fitHeight="115.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="simIcon" fitHeight="115.0" fitWidth="115.0" onMouseClicked="#toFileChooser" pickOnBounds="true" preserveRatio="true" />
                 <Label text="Simulación" />
             </children>
         </VBox>

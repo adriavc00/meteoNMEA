@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +37,7 @@ public class FXMLMainController implements Initializable {
     private final Map<String, Initializable> controllers = new HashMap<String, Initializable>(6);
     private final Clock clock = new Clock();
 
-    private Theme currentTheme;
+    private final SimpleObjectProperty<Theme> currentTheme = new SimpleObjectProperty<Theme>();
 
     private Node numInfo;
     private Node tempChart;
@@ -77,14 +78,15 @@ public class FXMLMainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Set default theme
         String theme;
-        if (LocalTime.now().isAfter(LocalTime.of(18, 30))) {
+        if (LocalTime.now().isAfter(LocalTime.of(18, 30))
+                || LocalTime.now().isBefore(LocalTime.of(7, 0))) {
             theme = "darkTheme";
             themeToggle.setSelected(true);
-            currentTheme = Theme.DARK_THEME;
+            currentTheme.set(Theme.DARK_THEME);
         } else {
             theme = "lightTheme";
             themeToggle.setSelected(false);
-            currentTheme = Theme.LIGHT_THEME;
+            currentTheme.set(Theme.LIGHT_THEME);
         }
         mainPane.getStylesheets().add(
                 getClass().getResource("/resources/css/" + theme + ".css").toExternalForm());
@@ -143,20 +145,20 @@ public class FXMLMainController implements Initializable {
                         getClass().getResource("/resources/css/lightTheme.css").toExternalForm());
                 mainPane.getStylesheets().add(
                         getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
-                currentTheme = Theme.DARK_THEME;
+                currentTheme.set(Theme.DARK_THEME);
                 initializeIcons();
             } else {
                 mainPane.getStylesheets().add(
                         getClass().getResource("/resources/css/lightTheme.css").toExternalForm());
                 mainPane.getStylesheets().remove(
                         getClass().getResource("/resources/css/darkTheme.css").toExternalForm());
-                currentTheme = Theme.LIGHT_THEME;
+                currentTheme.set(Theme.LIGHT_THEME);
                 initializeIcons();
             }
         });
     }
 
-    public Theme getTheme() {
+    public SimpleObjectProperty<Theme> themeProperty() {
         return currentTheme;
     }
 
@@ -185,7 +187,7 @@ public class FXMLMainController implements Initializable {
     }
 
     private void initializeIcons() {
-        switch (this.currentTheme) {
+        switch (this.currentTheme.get()) {
             case DARK_THEME:
                 numericButton.setGraphic(new ImageView(new Image(
                         "/resources/images/white_num_icon.png", 40, 40, false, false)));
@@ -205,6 +207,7 @@ public class FXMLMainController implements Initializable {
                         "/resources/images/black_wind_icon.png", 40, 40, false, false)));
                 pressureButton.setGraphic(new ImageView(new Image(
                         "/resources/images/black_pressure_icon.png", 40, 40, false, false)));
+                break;
         }
     }
 

@@ -7,12 +7,12 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import model.Model;
 
@@ -46,10 +46,23 @@ public class FXMLConfigurationController implements Initializable {
     public void setMainController(FXMLMainController mainController) {
         this.mainController = mainController;
         initializeIcons();
+        // Theme listener
+        this.mainController.themeProperty().addListener((observable, oldV, newV) -> {
+            switch (newV) {
+                case DARK_THEME:
+                    cloudIcon.setImage(new Image("/resources/images/white_cloud_icon.png"));
+                    simIcon.setImage(new Image("/resources/images/white_file_icon.png"));
+                    break;
+                case LIGHT_THEME:
+                    cloudIcon.setImage(new Image("/resources/images/black_cloud_icon.png"));
+                    simIcon.setImage(new Image("/resources/images/black_file_icon.png"));
+                    break;
+            }
+        });
     }
 
     private void initializeIcons() {
-        switch (this.mainController.getTheme()) {
+        switch (this.mainController.themeProperty().get()) {
             case DARK_THEME:
                 cloudIcon.setImage(new Image("/resources/images/white_cloud_icon.png"));
                 simIcon.setImage(new Image("/resources/images/white_file_icon.png"));
@@ -57,10 +70,17 @@ public class FXMLConfigurationController implements Initializable {
             case LIGHT_THEME:
                 cloudIcon.setImage(new Image("/resources/images/black_cloud_icon.png"));
                 simIcon.setImage(new Image("/resources/images/black_file_icon.png"));
+                break;
         }
     }
 
-    private void toFileChooser(ActionEvent event) {
+    @FXML
+    private void toNotImplemented(MouseEvent event) {
+        mainController.setNoImplementCenter();
+    }
+
+    @FXML
+    private void toFileChooser(MouseEvent event) {
         FileChooser ficheroChooser = new FileChooser();
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         ficheroChooser.setInitialDirectory(new File(currentPath));
@@ -86,9 +106,5 @@ public class FXMLConfigurationController implements Initializable {
             }
         }
         mainController.setNumericCenter();
-    }
-
-    private void toNotImplemented(ActionEvent event) {
-        mainController.setNoImplementCenter();
     }
 }

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLPressureChartController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLPressureChartController">
    <children>
-      <LineChart fx:id="chartPressure">
+      <LineChart fx:id="chartPressure" createSymbols="false">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -34,17 +34,17 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label text="  TWD: " />
-            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" text="35.5" />
-            <Text fx:id="nDirection1" strokeType="OUTSIDE" strokeWidth="0.0" text=" º" />
+            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="35.5" />
+            <Text fx:id="nDirection1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" º" />
             <Label text="   TWS: " />
-            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="62.5" />
-            <Text fx:id="nDirection2" strokeType="OUTSIDE" strokeWidth="0.0" text=" Kn" />
+            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="62.5" />
+            <Text fx:id="nDirection2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" Kn" />
             <Label text="   TEMP: " />
-            <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" text="10.5" />
-            <Text fx:id="nTemp1" strokeType="OUTSIDE" strokeWidth="0.0" text=" º" />
+            <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="10.5" />
+            <Text fx:id="nTemp1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" º" />
             <Label text="   Presión: " />
-            <Text fx:id="nPressure" strokeType="OUTSIDE" strokeWidth="0.0" text="1.0131" />
-            <Text fx:id="nPressure1" strokeType="OUTSIDE" strokeWidth="0.0" text=" B" />
+            <Text fx:id="nPressure" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="1.0131" />
+            <Text fx:id="nPressure1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" B" />
          </children>
       </HBox>
    </children>

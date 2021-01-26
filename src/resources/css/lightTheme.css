@@ -54,3 +54,15 @@
     -fx-border-color: derive(-button-pressed, 10%);
     -fx-background-color: -button-pressed;
 }
+
+.chart-legend-item-symbol {
+    -fx-background-color: black;
+}
+
+.default-color0.chart-series-line {
+    -fx-stroke: black;
+}
+
+.numeric-pane {
+    -fx-border-width: 2;
+}

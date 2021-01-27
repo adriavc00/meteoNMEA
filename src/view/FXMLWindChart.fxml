@@ -8,13 +8,14 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLWindChartController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLWindChartController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="335.0" HBox.hgrow="SOMETIMES">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="330.0" HBox.hgrow="SOMETIMES">
                <children>
                   <LineChart fx:id="chartDirection" createSymbols="false">
                     <xAxis>
@@ -26,7 +27,7 @@
                   </LineChart>
                </children>
             </VBox>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="345.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="350.0">
                <children>
                   <LineChart fx:id="chartSpeed" createSymbols="false" VBox.vgrow="SOMETIMES">
                     <xAxis>
@@ -40,6 +41,11 @@
             </VBox>
          </children>
       </HBox>
+      <Label text="Minutos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
       <Slider fx:id="slider" majorTickUnit="1.0" max="10.0" min="5.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>

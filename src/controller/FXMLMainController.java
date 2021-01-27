@@ -251,8 +251,7 @@ public class FXMLMainController implements Initializable {
 
     @FXML
     private void pressureScene(ActionEvent event) {
-        //FALTA DE HACER EL FXML
-
+        mainPane.setCenter(pressureChart);
         numericButton.setDisable(false);
         tempButton.setDisable(false);
         windButton.setDisable(false);

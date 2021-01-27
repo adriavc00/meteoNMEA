@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" styleClass="numeric-pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNumericInfoController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" styleClass="numeric-pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNumericInfoController">
       <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="340.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="2.0" />
@@ -32,7 +32,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
       <children>
-          <Label alignment="CENTER_RIGHT" text="TEMPERATURA" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowSpan="2">
+          <Label alignment="CENTER_RIGHT" text="TEMPERATURA" textAlignment="RIGHT" GridPane.halignment="CENTER" GridPane.rowSpan="2">
               <GridPane.margin>
                   <Insets right="20.0" />
               </GridPane.margin>
@@ -40,17 +40,17 @@
                   <Font size="20.0" />
               </font>
           </Label>
-          <Label text="PRESIÓN" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowSpan="2">
+          <Label text="PRESIÓN" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2">
               <GridPane.margin>
-                  <Insets right="25.0" />
+                  <Insets />
               </GridPane.margin>
               <font>
                   <Font size="20.0" />
               </font>
           </Label>
-          <Label text="VIENTO" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+          <Label text="VIENTO" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
               <GridPane.margin>
-                  <Insets right="25.0" />
+                  <Insets bottom="10.0" />
               </GridPane.margin>
               <font>
                   <Font size="20.0" />
@@ -141,9 +141,15 @@
             <Insets right="25.0" top="10.0" />
          </GridPane.margin>
           </HBox>
-      <Line endX="-100.91421508789062" endY="389.29290771484375" startX="-100.9141845703125" startY="3.69520902633667" strokeWidth="2.0" styleClass="num-line" GridPane.columnIndex="1" GridPane.rowSpan="2147483647" />
-      <Line endX="237.2928924560547" endY="0.7929237484931946" startX="594.5858154296875" startY="0.7926920056343079" strokeWidth="2.0" styleClass="num-line" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-      <Line endX="257.29290771484375" endY="0.7928627133369446" startX="-100.0" style="-fx-stroke-dash-array: 10;" styleClass="num-line" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-      <Line endX="-100.41421508789062" endY="134.0796661376953" startX="-100.0" style="-fx-stroke-dash-array: 10;" styleClass="num-line" GridPane.columnIndex="3" GridPane.rowIndex="7" GridPane.rowSpan="2147483647" />
+      <Line endX="-100.91421508789062" endY="365.90435791015625" startX="-100.91421508789062" startY="-0.28140926361083984" strokeWidth="2.0" styleClass="num-line" GridPane.columnIndex="1" GridPane.rowSpan="2147483647">
+         <GridPane.margin>
+            <Insets top="25.0" />
+         </GridPane.margin>
+      </Line>
+      <Line endX="237.2928924560547" endY="0.7929237484931946" startX="578.2787475585938" startY="0.7929375171661377" strokeWidth="2.0" styleClass="num-line" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="13.0" />
+         </GridPane.margin></Line>
+      <Line endX="-97.3353271484375" endY="132.4648895263672" startX="-97.89283752441406" startY="-4.4280171394348145" style="-fx-stroke-dash-array: 10;" styleClass="num-line" GridPane.columnIndex="3" GridPane.rowIndex="7" GridPane.rowSpan="2147483647" />
       </children>
   </GridPane>

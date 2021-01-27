@@ -8,9 +8,10 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLPressureChartController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLPressureChartController">
    <children>
       <LineChart fx:id="chartPressure" createSymbols="false">
         <xAxis>
@@ -20,6 +21,11 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
+      <Label text="Minutos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Slider fx:id="slider" majorTickUnit="1.0" max="10.0" maxHeight="-Infinity" maxWidth="-Infinity" min="5.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="5" prefHeight="38.0" prefWidth="640.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />

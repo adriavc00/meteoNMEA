@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLTempChartController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLTempChartController">
    <children>
       <LineChart fx:id="chartTemp" createSymbols="false" legendVisible="false" title="Temperatura (ºC)">
         <xAxis>
@@ -40,9 +40,11 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label text="  TWD: " />
-            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="35.5 º" />
+            <Text fx:id="nDirection" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="35.5" />
+            <Text layoutX="48.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" º" />
             <Label text="   TWS: " />
-            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="62.5 Kn" />
+            <Text fx:id="nSpeed" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="62.5" />
+            <Text layoutX="120.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" Kn" />
             <Label text="   TEMP: " />
             <Text fx:id="nTemp" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="10.5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text=" º" />

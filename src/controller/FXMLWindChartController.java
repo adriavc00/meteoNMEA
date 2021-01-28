@@ -57,15 +57,11 @@ public class FXMLWindChartController implements Initializable {
         });
 
         model.setSizeWindChart(300);
+
         chartDirectionSerie = model.getTWDSerie();
         chartDirectionSerie.setName("Dirección (º)");
-
         chartSpeedSerie = model.getTWSSerie();
         chartSpeedSerie.setName("Velocidad (Kn)");
-
-        // Hide X axis, doable from FXML (cleaner and preferred)
-        chartSpeed.getXAxis().setTickLabelsVisible(false);
-        chartSpeed.getXAxis().setTickMarkVisible(false);
 
         chartDirection.getData().add(chartDirectionSerie);
         chartSpeed.getData().add(chartSpeedSerie);
@@ -94,6 +90,22 @@ public class FXMLWindChartController implements Initializable {
                 nSpeed.setText(dat);
             });
         });
+    }
+
+    /**
+     * Clear the chart and set it to the new series.
+     */
+    public void resetChart() {
+        chartDirectionSerie.getData().clear();
+        chartSpeedSerie.getData().clear();
+
+        chartDirectionSerie = model.getTWDSerie();
+        chartDirectionSerie.setName("Dirección (º)");
+        chartSpeedSerie = model.getTWSSerie();
+        chartSpeedSerie.setName("Velocidad (Kn)");
+
+        chartDirection.getData().add(chartDirectionSerie);
+        chartSpeed.getData().add(chartSpeedSerie);
     }
 
 }

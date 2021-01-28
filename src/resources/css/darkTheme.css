@@ -1,6 +1,6 @@
 /*
     Created on : 12 ene. 2021, 15:18:54
-    Author     : ADRIA - LP
+    Author     : Adria V., Felipe Z.
 */
 
 /* BASIC RULES AND DEIFINITIONS */
@@ -60,16 +60,12 @@
 }
 
 /* CHART RULES */
-.chart-legend {
-    -fx-background-color: derive(-back-color, 30%);
-}
-
-.chart-legend-item-symbol {
-    -fx-background-color: black;
-}
-
 .default-color0.chart-series-line {
     -fx-stroke: black;
+}
+
+.axis {
+    -fx-tick-label-fill: derive(white, -20%);
 }
 
 /* SEPARATORS AND DECORATIVES RULES */

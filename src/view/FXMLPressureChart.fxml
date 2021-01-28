@@ -13,7 +13,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLPressureChartController">
    <children>
-      <LineChart fx:id="chartPressure" createSymbols="false">
+      <LineChart fx:id="chartPressure" createSymbols="false" legendVisible="false" title="Presión (B)">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

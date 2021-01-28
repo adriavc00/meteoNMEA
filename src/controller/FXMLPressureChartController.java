@@ -55,6 +55,7 @@ public class FXMLPressureChartController implements Initializable {
         });
 
         model.setSizePressureChart(300);
+
         chartPressureSerie = model.getPressureSerie();
         chartPressureSerie.setName("Presión");
 
@@ -85,6 +86,18 @@ public class FXMLPressureChartController implements Initializable {
                 nSpeed.setText(dat);
             });
         });
+    }
+
+    /**
+     * Clear the chart and set it to the new series.
+     */
+    public void resetChart() {
+        chartPressureSerie.getData().clear();
+
+        chartPressureSerie = model.getPressureSerie();
+        chartPressureSerie.setName("Presión");
+
+        chartPressure.getData().add(chartPressureSerie);
     }
 
 }

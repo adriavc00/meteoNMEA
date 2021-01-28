@@ -54,6 +54,7 @@ public class FXMLTempChartController implements Initializable {
         });
 
         model.setSizeTempChart(300);
+
         chartTempSerie = model.getTempSerie();
         chartTempSerie.setName("Temperatura");
 
@@ -84,6 +85,18 @@ public class FXMLTempChartController implements Initializable {
                 nSpeed.setText(dat);
             });
         });
+    }
+
+    /**
+     * Clear the chart and set it to the new series.
+     */
+    public void resetChart() {
+        chartTempSerie.getData().clear();
+
+        chartTempSerie = model.getTempSerie();
+        chartTempSerie.setName("Temperatura");
+
+        chartTemp.getData().add(chartTempSerie);
     }
 
 }

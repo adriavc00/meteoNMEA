@@ -211,6 +211,15 @@ public class FXMLMainController implements Initializable {
         confButton.setOnMouseClicked(this::configurationScene);
     }
 
+    /**
+     * Resets the charts display.
+     */
+    public void resetCharts() {
+        ((FXMLWindChartController) controllers.get("windChart")).resetChart();
+        ((FXMLTempChartController) controllers.get("tempChart")).resetChart();
+        ((FXMLPressureChartController) controllers.get("pressureChart")).resetChart();
+    }
+
     private void initializeIcons() {
         switch (this.currentTheme.get()) {
             case DARK_THEME:

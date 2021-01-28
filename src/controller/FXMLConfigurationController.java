@@ -103,6 +103,7 @@ public class FXMLConfigurationController implements Initializable {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            mainController.resetCharts();
             mainController.setNumericCenter();
         }
     }

@@ -15,23 +15,32 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import model.Model;
+import util.Theme;
 
 /**
- * FXML Controller class
+ * FXML Controller class of the configuration frame.
  *
- * @author ADRIA - LP
+ * @author Adria V.
+ * @author Felipe Z.
  */
 public class FXMLConfigurationController implements Initializable {
 
     private FXMLMainController mainController;
     private Model model;
+
     @FXML
     private ImageView cloudIcon;
     @FXML
     private ImageView simIcon;
 
     /**
-     * Initializes the controller class.
+     * Initialize the controller class.
+     *
+     * @param url The location used to resolve relative paths for the root object, or <tt>null</tt>
+     * if the location is not known.
+     *
+     * @param rb  The resources used to localize the root object, or <tt>null</tt> if the root
+     *            object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -39,30 +48,21 @@ public class FXMLConfigurationController implements Initializable {
     }
 
     /**
-     * Set the main controller to show other nodes.
+     * Set the main controller to show other nodes and initialize the icons and the theme listener.
      *
-     * @param mainController
+     * @param mainController Controller to be set.
      */
     public void setMainController(FXMLMainController mainController) {
         this.mainController = mainController;
-        initializeIcons();
+        initializeIcons(this.mainController.themeProperty().get());
         // Theme listener
         this.mainController.themeProperty().addListener((observable, oldV, newV) -> {
-            switch (newV) {
-                case DARK_THEME:
-                    cloudIcon.setImage(new Image("/resources/images/white_cloud_icon.png"));
-                    simIcon.setImage(new Image("/resources/images/white_file_icon.png"));
-                    break;
-                case LIGHT_THEME:
-                    cloudIcon.setImage(new Image("/resources/images/black_cloud_icon.png"));
-                    simIcon.setImage(new Image("/resources/images/black_file_icon.png"));
-                    break;
-            }
+            initializeIcons(newV);
         });
     }
 
-    private void initializeIcons() {
-        switch (this.mainController.themeProperty().get()) {
+    private void initializeIcons(Theme theme) {
+        switch (theme) {
             case DARK_THEME:
                 cloudIcon.setImage(new Image("/resources/images/white_cloud_icon.png"));
                 simIcon.setImage(new Image("/resources/images/white_file_icon.png"));
@@ -71,6 +71,8 @@ public class FXMLConfigurationController implements Initializable {
                 cloudIcon.setImage(new Image("/resources/images/black_cloud_icon.png"));
                 simIcon.setImage(new Image("/resources/images/black_file_icon.png"));
                 break;
+            default:
+                throw new AssertionError(this.mainController.themeProperty().get().name());
         }
     }
 
@@ -86,8 +88,6 @@ public class FXMLConfigurationController implements Initializable {
         ficheroChooser.setInitialDirectory(new File(currentPath));
         ficheroChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("ficheros NMEA",
                                                                                  "*.NMEA"));
-
-//        ficheroChooser.setSelectedExtensionFilter(new ExtensionFilter("ficheros NMEA", "*.NMEA"));
         ficheroChooser.setTitle("fichero datos NMEA");
 
         File ficheroNMEA = ficheroChooser.showOpenDialog(
@@ -96,7 +96,6 @@ public class FXMLConfigurationController implements Initializable {
             // ========================================================
             // NO se comprueba que se trata de un fichero de datos NMEA
             // esto es una demos
-            //ficheroLabel.setText("fichero: " + ficheroNMEA.getName());
             // ========================================================
             // se pone en marcha el proceso para recibir tramas
             try {
@@ -104,7 +103,7 @@ public class FXMLConfigurationController implements Initializable {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            mainController.setNumericCenter();
         }
-        mainController.setNumericCenter();
     }
 }

@@ -8,18 +8,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Slider;
-import javafx.scene.input.DragEvent;
 import javafx.scene.text.Text;
 import model.Model;
 
 /**
- * FXML Controller class
+ * FXML Controller class of the temperature chart
  *
- * @author lipez
+ * @author Adria V.
+ * @author Felipe Z.
  */
 public class FXMLTempChartController implements Initializable {
 
     private XYChart.Series<String, Number> chartTempSerie;
+    private Model model;
+
     @FXML
     private Slider slider;
     @FXML
@@ -29,27 +31,25 @@ public class FXMLTempChartController implements Initializable {
     @FXML
     private Text nTemp;
     @FXML
-    private Text nTemp1;
-    @FXML
     private Text nPressure;
-    @FXML
-    private Text nPressure1;
-
-    private Model model;
     @FXML
     private LineChart<String, Number> chartTemp;
 
     /**
-     * Initializes the controller class.
+     * Initialize the controller class.
+     *
+     * @param url The location used to resolve relative paths for the root object, or <tt>null</tt>
+     * if the location is not known.
+     *
+     * @param rb  The resources used to localize the root object, or <tt>null</tt> if the root
+     *            object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         model = Model.getInstance();
 
-        slider.valueProperty().addListener((a, b, c) -> {
-            int size = (int) Math.round((double) c * 60);
-            //System.out.println(size);
+        slider.valueProperty().addListener((observable, oldV, newV) -> {
+            int size = (int) Math.round((double) newV * 60);
             model.setSizeTempChart(size);
         });
 
@@ -59,28 +59,27 @@ public class FXMLTempChartController implements Initializable {
 
         chartTemp.getData().add(chartTempSerie);
 
-        model.barometricPressureProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
-            // + " " + model.getBarometricUnit()
+        model.barometricPressureProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nPressure.setText(dat);
             });
         });
-        model.TEMPProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TEMPProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nTemp.setText(dat);
             });
         });
 
-        model.TWDProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TWDProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nDirection.setText(dat);
             });
         });
-        model.TWSProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TWSProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nSpeed.setText(dat);
             });

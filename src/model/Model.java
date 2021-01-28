@@ -13,15 +13,11 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 import net.sf.marineapi.nmea.event.AbstractSentenceListener;
-import net.sf.marineapi.nmea.io.ExceptionListener;
 import net.sf.marineapi.nmea.io.SentenceReader;
-import net.sf.marineapi.nmea.sentence.HDGSentence;
 import net.sf.marineapi.nmea.sentence.MDASentence;
-import net.sf.marineapi.nmea.sentence.MWVSentence;
 
 /**
  *
@@ -34,9 +30,6 @@ public class Model {
     // esto asegura que solamente se va a crear una instancia de la clase model
     // y se podra acceder a ella desde cualquier clase del proyecto
     private static Model model;
-
-    private Model() {
-    }
 
     public static Model getInstance() {
         if (model == null) {
@@ -56,33 +49,57 @@ public class Model {
     //True Wind Dir -- direccion del viento respecto al norte
     private final DoubleProperty TWD = new SimpleDoubleProperty();
 
+    // True Wind Speed -- intensidad de viento
+    private final DoubleProperty TWS = new SimpleDoubleProperty();
+
+    // TEMP -- temperatura
+    private final DoubleProperty TEMP = new SimpleDoubleProperty();
+
+    //Barometric Pressure -- presion barometrica
+    private final DoubleProperty barometricPressure = new SimpleDoubleProperty();
+
+    //Barometric Pressure Unit -- unidades de presion barometrica
+    private final StringProperty barometricUnit = new SimpleStringProperty();
+
+    // ESTRUCTURAS GRÁFICA TEMPERATURA
+    private final XYChart.Series<String, Number> tempSerie = new XYChart.Series<>();
+
+    private final ObservableList<XYChart.Data<String, Number>> tempList = tempSerie.getData();
+
+    private final IntegerProperty sizeDataTempChart = new SimpleIntegerProperty();
+    // ESTRUCTURAS GRÁFICA PRESIÓN
+    private final XYChart.Series<String, Number> pressureSerie = new XYChart.Series<>();
+    private final ObservableList<XYChart.Data<String, Number>> pressureList = pressureSerie.getData();
+    private final IntegerProperty sizeDataPressureChart = new SimpleIntegerProperty();
+    //==================================================================
+    // estructuras para las graficas de viento
+    // TWDSerie -- serie de datos de la direccion del viento TWD
+    private final XYChart.Series<String, Number> TWDSerie = new XYChart.Series<>();
+    private final ObservableList<XYChart.Data<String, Number>> TWDList = TWDSerie.getData();
+    // TWSSerie -- serie de datos de la intensidad del viento TWS
+    private final XYChart.Series<String, Number> TWSSerie = new XYChart.Series<>();
+    private final ObservableList<XYChart.Data<String, Number>> TWSList = TWSSerie.getData();
+    // tamanyo de la lista de valores a mostrar en las graficas del viento
+    private final IntegerProperty sizeDataWindChart = new SimpleIntegerProperty();
+
+    private Model() {
+    }
+
     public DoubleProperty TWDProperty() {
         return TWD;
     }
-
-    // True Wind Speed -- intensidad de viento
-    private final DoubleProperty TWS = new SimpleDoubleProperty();
 
     public DoubleProperty TWSProperty() {
         return TWS;
     }
 
-    // TEMP -- temperatura
-    private final DoubleProperty TEMP = new SimpleDoubleProperty();
-
     public DoubleProperty TEMPProperty() {
         return TEMP;
     }
 
-    //Barometric Pressure -- presion barometrica
-    private final DoubleProperty barometricPressure = new SimpleDoubleProperty();
-
     public DoubleProperty barometricPressureProperty() {
         return barometricPressure;
     }
-
-    //Barometric Pressure Unit -- unidades de presion barometrica
-    private final StringProperty barometricUnit = new SimpleStringProperty();
 
     public String getBarometricUnit() {
         return barometricUnit.get();
@@ -92,15 +109,9 @@ public class Model {
         return barometricUnit;
     }
 
-    // ESTRUCTURAS GRÁFICA TEMPERATURA
-    private XYChart.Series<String, Number> tempSerie = new XYChart.Series<>();
-
     public XYChart.Series<String, Number> getTempSerie() {
         return tempSerie;
     }
-    private ObservableList<XYChart.Data<String, Number>> tempList = tempSerie.getData();
-    
-    private final IntegerProperty sizeDataTempChart = new SimpleIntegerProperty();
 
     public int getSizeDateTempChart() {
         return sizeDataTempChart.get();
@@ -113,17 +124,10 @@ public class Model {
     public IntegerProperty sizeDataTempChartProperty() {
         return sizeDataTempChart;
     }
-    
-    // ESTRUCTURAS GRÁFICA PRESIÓN
-    private XYChart.Series<String, Number> pressureSerie = new XYChart.Series<>();
-    
+
     public XYChart.Series<String, Number> getPressureSerie() {
         return pressureSerie;
     }
-    
-     private ObservableList<XYChart.Data<String, Number>> pressureList = pressureSerie.getData();
-
-     private final IntegerProperty sizeDataPressureChart = new SimpleIntegerProperty();
 
     public int getSizeDatePressureChart() {
         return sizeDataPressureChart.get();
@@ -136,26 +140,14 @@ public class Model {
     public IntegerProperty sizeDataPressureChartProperty() {
         return sizeDataPressureChart;
     }
-    //==================================================================
-    // estructuras para las graficas de viento
-    // TWDSerie -- serie de datos de la direccion del viento TWD
-    private XYChart.Series<String, Number> TWDSerie = new XYChart.Series<>();
 
     public XYChart.Series<String, Number> getTWDSerie() {
         return TWDSerie;
     }
-    private ObservableList<XYChart.Data<String, Number>> TWDList = TWDSerie.getData();
-
-    // TWSSerie -- serie de datos de la intensidad del viento TWS
-    private XYChart.Series<String, Number> TWSSerie = new XYChart.Series<>();
 
     public XYChart.Series<String, Number> getTWSSerie() {
         return TWSSerie;
     }
-    private ObservableList<XYChart.Data<String, Number>> TWSList = TWSSerie.getData();
-
-    // tamanyo de la lista de valores a mostrar en las graficas del viento
-    private final IntegerProperty sizeDataWindChart = new SimpleIntegerProperty();
 
     public int getSizeDateWindChart() {
         return sizeDataWindChart.get();
@@ -167,6 +159,31 @@ public class Model {
 
     public IntegerProperty sizeDataWindChartProperty() {
         return sizeDataWindChart;
+    }
+
+    //===================================================================
+    // METODO a invocar para RECIBIR DATOS desde el fichero de log
+    public void addSentenceReader(File file) throws FileNotFoundException {
+
+        InputStream stream = new FileInputStream(file);
+        if (reader != null) {  // esto ocurre si ya estamos leyendo un fichero
+            reader.stop();
+        }
+        reader = new SentenceReader(stream);
+
+        //===============================================================
+        //creamos los SentenceListener para cada tipo de trama y los registramos
+        MDASentenceListener mda = new MDASentenceListener();
+        reader.addSentenceListener(mda);
+
+        //===============================================================
+        //anadimos un exceptionListener para que capture las tramas que no tienen parser
+        reader.setExceptionListener(e -> {
+            System.out.println(e.getMessage());
+        });
+
+        // arrancamos el SentenceReader para que empieze a escuchar
+        reader.start();
     }
 
     //===================================================================
@@ -194,14 +211,14 @@ public class Model {
                 TWSList.remove(0);
             }
             //================================================================
-            
+
             //Gestionar datos temperatura gráfica
             tempList.add(new XYChart.Data<>(LocalDateTime.now().format(
                     DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)), TEMP.get()));
             while (tempList.size() > sizeDataTempChart.intValue()) {
                 tempList.remove(0);
             }
-            
+
             //Gestionar datos presión gráfica
             pressureList.add(new XYChart.Data<>(LocalDateTime.now().format(
                     DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)), barometricPressure.get()));
@@ -209,30 +226,5 @@ public class Model {
                 pressureList.remove(0);
             }
         }
-    }
-
-    //===================================================================
-    // METODO a invocar para RECIBIR DATOS desde el fichero de log
-    public void addSentenceReader(File file) throws FileNotFoundException {
-
-        InputStream stream = new FileInputStream(file);
-        if (reader != null) {  // esto ocurre si ya estamos leyendo un fichero
-            reader.stop();
-        }
-        reader = new SentenceReader(stream);
-
-        //===============================================================
-        //creamos los SentenceListener para cada tipo de trama y los registramos
-        MDASentenceListener mda = new MDASentenceListener();
-        reader.addSentenceListener(mda);
-
-        //===============================================================
-        //anadimos un exceptionListener para que capture las tramas que no tienen parser
-        reader.setExceptionListener(e -> {
-            System.out.println(e.getMessage());
-        });
-
-        // arrancamos el SentenceReader para que empieze a escuchar
-        reader.start();
     }
 }

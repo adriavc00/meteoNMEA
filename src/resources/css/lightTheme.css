@@ -3,24 +3,13 @@
     Author     : ADRIA - LP
 */
 
+/* BASIC RULES AND DEIFINITIONS */
 .root {
     -back-color: white;
     -bar-back-color: derive(-back-color, -20%);
     -button-color: derive(-bar-back-color, -40%);
     -button-pressed: derive(-button-color, -20%);
     -fx-background-color: -back-color;
-}
-
-.header {
-    -fx-background-color: black;
-}
-
-.header-text {
-    -fx-fill: white;
-}
-
-.toolbar {
-    -fx-background-color: -bar-back-color;
 }
 
 .text {
@@ -38,6 +27,11 @@
     -fx-border-width: 2;
 }
 
+.button:armed, button:pressed {
+    -fx-border-color: derive(-button-pressed, 10%);
+    -fx-background-color: -button-pressed;
+}
+
 .toggle-button {
     -fx-background-color: white;
     -fx-background-radius: 6;
@@ -50,19 +44,25 @@
     -fx-background-color: black;
 }
 
-.button:armed, button:pressed {
-    -fx-border-color: derive(-button-pressed, 10%);
-    -fx-background-color: -button-pressed;
+/* HEADER RULES */
+.header {
+    -fx-background-color: black;
 }
 
+.header-text {
+    -fx-fill: white;
+}
+
+/* TOOLBAR RULES*/
+.toolbar {
+    -fx-background-color: -bar-back-color;
+}
+
+/* CHART RULES */
 .chart-legend-item-symbol {
     -fx-background-color: black;
 }
 
 .default-color0.chart-series-line {
     -fx-stroke: black;
-}
-
-.numeric-pane {
-    -fx-border-width: 2;
 }

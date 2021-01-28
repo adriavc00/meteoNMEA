@@ -28,17 +28,21 @@ import util.Clock;
 import util.Theme;
 
 /**
- * FXML Controller class
+ * FXML Controller main class. Everything is managed by this controller.
  *
- * @author ADRIA - LP
+ * @author Adria V.
+ * @author Felipe Z.
  */
 public class FXMLMainController implements Initializable {
 
+    // Controllers of all loaded nodes, to execute setMainController methods and other.
     private final Map<String, Initializable> controllers = new HashMap<String, Initializable>(6);
+    // Observable property of the theme of the application
+    private final SimpleObjectProperty<Theme> currentTheme = new SimpleObjectProperty<Theme>();
+    // Clock instance to show the hour and date.
     private final Clock clock = new Clock();
 
-    private final SimpleObjectProperty<Theme> currentTheme = new SimpleObjectProperty<Theme>();
-
+    // All nodes loaded in the initialize and accessible at any time as an attribute.
     private Node numInfo;
     private Node tempChart;
     private Node windChart;
@@ -72,11 +76,17 @@ public class FXMLMainController implements Initializable {
     private ImageView confButton;
 
     /**
-     * Initializes the controller class.
+     * Initialize the controller class.
+     *
+     * @param url The location used to resolve relative paths for the root object, or <tt>null</tt>
+     * if the location is not known.
+     *
+     * @param rb  The resources used to localize the root object, or <tt>null</tt> if the root
+     *            object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Set default theme
+        // Set initial theme and all the style and icons needed.
         String theme;
         if (LocalTime.now().isAfter(LocalTime.of(18, 30))
                 || LocalTime.now().isBefore(LocalTime.of(7, 0))) {
@@ -91,9 +101,11 @@ public class FXMLMainController implements Initializable {
         mainPane.getStylesheets().add(
                 getClass().getResource("/resources/css/" + theme + ".css").toExternalForm());
         initializeIcons();
+
         // Clock initialization
         clock.initClock();
-        // Load Center Nodes
+
+        // Load center nodes and its controllers.
         try {
             FXMLLoader customLoader = new FXMLLoader(
                     getClass().getResource("/view/FXMLNumericInfo.fxml"));
@@ -127,18 +139,22 @@ public class FXMLMainController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         // Set default center node
         mainPane.setCenter(numInfo);
+
         // Initial toolbar configuration
         numericButton.setDisable(true);
         tempButton.setDisable(false);
         windButton.setDisable(false);
         pressureButton.setDisable(false);
-        // Bindings
+
+        // Clock bindings
         time.textProperty().bind(clock.timeProperty());
         date.textProperty().bind(clock.dateProperty());
         day.textProperty().bind(clock.dayProperty());
-        // Listeners
+
+        // Theme listener
         themeToggle.selectedProperty().addListener((observable, oldV, newV) -> {
             if (newV) {
                 mainPane.getStylesheets().remove(
@@ -158,32 +174,41 @@ public class FXMLMainController implements Initializable {
         });
     }
 
+    /**
+     * Get the current theme observable property of the application
+     *
+     * @return Theme property that represent the current theme of the application
+     */
     public SimpleObjectProperty<Theme> themeProperty() {
         return currentTheme;
     }
 
+    /**
+     * Sets the configuration Node as the center of the main pane of the application.
+     */
     public void setConfigurationCenter() {
         mainPane.setCenter(configuration);
         statusText.setText("Configuración");
     }
 
+    /**
+     * Sets the no implemented Node as the center of the main pane of the application.
+     */
     public void setNoImplementCenter() {
-        this.mainPane.setCenter(noImplement);
-        this.statusText.setText("");
+        mainPane.setCenter(noImplement);
+        statusText.setText("");
         ((FXMLNoImplementController) controllers.get("noImplement")).setMainController(this);
     }
 
+    /**
+     * Sets the numeric Node as the center of the main pane of the application.
+     */
     public void setNumericCenter() {
-        this.restoreToolbar();
+        restoreToolbar();
         numericButton.setDisable(false);
         numericButton.fire();
         confButton.setImage(new Image("/resources/images/white_connection_icon.png"));
         confButton.setOnMouseClicked(this::configurationScene);
-    }
-
-    private void restoreToolbar() {
-        this.mainPane.setLeft(toolbar);
-        ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().add("toolbar");
     }
 
     private void initializeIcons() {
@@ -209,6 +234,11 @@ public class FXMLMainController implements Initializable {
                         "/resources/images/black_pressure_icon.png", 40, 40, false, false)));
                 break;
         }
+    }
+
+    private void restoreToolbar() {
+        mainPane.setLeft(toolbar);
+        ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().add("toolbar");
     }
 
     @FXML
@@ -262,8 +292,10 @@ public class FXMLMainController implements Initializable {
 
     @FXML
     private void configurationScene(MouseEvent event) {
+        // confButton becomes home button so it has to go to numeric center if clicked again.
         confButton.setImage(new Image("/resources/images/white_home_icon.png"));
-        confButton.setOnMouseClicked((e) -> this.setNumericCenter());
+        confButton.setOnMouseClicked((newEvent) -> this.setNumericCenter());
+
         mainPane.setLeft(null);
         ((Pane) mainPane.getBottom()).getChildren().get(0).getStyleClass().remove("toolbar");
         mainPane.setCenter(configuration);

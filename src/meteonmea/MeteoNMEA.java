@@ -16,6 +16,15 @@ import javafx.stage.StageStyle;
  */
 public class MeteoNMEA extends Application {
 
+    /**
+     * Method to be runned when the application starts. It launches the app.
+     *
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/FXMLMain.fxml"));
@@ -31,14 +40,5 @@ public class MeteoNMEA extends Application {
             Platform.exit();
             System.exit(0);
         });
-    }
-
-    /**
-     * Method to be runned when the application starts. It launches the app.
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 }

@@ -7,25 +7,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.Model;
 
 /**
- * FXML Controller class
+ * FXML Controller class of the wind charts
  *
- * @author lipez
+ * @author Adria V.
+ * @author Felipe Z.
  */
 public class FXMLWindChartController implements Initializable {
 
+    private XYChart.Series<String, Number> chartDirectionSerie;
+    private Model model;
+
     @FXML
     private LineChart<String, Number> chartDirection;
-    private XYChart.Series<String, Number> chartDirectionSerie;
-
     @FXML
     private LineChart<String, Number> chartSpeed;
     private XYChart.Series<String, Number> chartSpeedSerie;
@@ -40,75 +38,58 @@ public class FXMLWindChartController implements Initializable {
     @FXML
     private Text nPressure;
 
-    private Model model;
-    @FXML
-    private Text nTemp1;
-    @FXML
-    private Text nPressure1;
-    @FXML
-    private Text nTemp11;
-    @FXML
-    private Text nTemp12;
-
     /**
-     * Initializes the controller class.
+     * Initialize the controller class.
+     *
+     * @param url The location used to resolve relative paths for the root object, or <tt>null</tt>
+     * if the location is not known.
+     *
+     * @param rb  The resources used to localize the root object, or <tt>null</tt> if the root
+     *            object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         model = Model.getInstance();
-        //int size;
 
-        slider.valueProperty().addListener((a, b, c) -> {
-            int size = (int) Math.round((double) c * 60);
-            //System.out.println(size);
+        slider.valueProperty().addListener((observable, oldV, newV) -> {
+            int size = (int) Math.round((double) newV * 60);
             model.setSizeWindChart(size);
         });
 
         model.setSizeWindChart(300);
-
         chartDirectionSerie = model.getTWDSerie();
         chartDirectionSerie.setName("Dirección (º)");
 
         chartSpeedSerie = model.getTWSSerie();
         chartSpeedSerie.setName("Velocidad (Kn)");
 
-        //chartDirection.getXAxis().setAutoRanging(false);
-        //chartDirection.getXAxis().setTickLabelsVisible(false);
-        //chartDirection.getXAxis().setTickMarkVisible(false);
-        //chartDirection.getXAxis().setOpacity(0);
-        //chartDirection.getXAxis().setLabel("Dirección");
+        // Hide X axis, doable from FXML (cleaner and preferred)
         chartSpeed.getXAxis().setTickLabelsVisible(false);
         chartSpeed.getXAxis().setTickMarkVisible(false);
-        //chartSpeed.getXAxis().setOpacity(0);
-        //chartSpeed.getXAxis().setLabel("Velocidad");
 
         chartDirection.getData().add(chartDirectionSerie);
         chartSpeed.getData().add(chartSpeedSerie);
 
-        //INFORMACIÓN NUMÉRICA
-        model.barometricPressureProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
-            // + " " + model.getBarometricUnit()
+        model.barometricPressureProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nPressure.setText(dat);
             });
         });
-        model.TEMPProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TEMPProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nTemp.setText(dat);
             });
         });
-
-        model.TWDProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TWDProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nDirection.setText(dat);
             });
         });
-        model.TWSProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TWSProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nSpeed.setText(dat);
             });

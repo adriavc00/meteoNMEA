@@ -13,14 +13,19 @@ import javafx.scene.text.Text;
 import model.Model;
 
 /**
- * FXML Controller class
+ * FXML Controller class of the numeric information caught from the input data.
  *
- * @author ADRIA - LP
+ * @author Adria V.
+ * @author Felipe Z.
  */
 public class FXMLNumericInfoController implements Initializable {
 
+    // File that is loaded every times the app start.
     private static final String DEFAULT_FILE_PATH = "src/files/Jul_20_2017_0183.NMEA";
+    // Precision of the pressure data.
     private static final int PRESSURE_CHARS = 6;
+
+    private Model model;
 
     @FXML
     private Text nTemp;
@@ -31,10 +36,14 @@ public class FXMLNumericInfoController implements Initializable {
     @FXML
     private Text nSpeed;
 
-    private Model model;
-
     /**
-     * Initializes the controller class.
+     * Initialize the controller class.
+     *
+     * @param url The location used to resolve relative paths for the root object, or <tt>null</tt>
+     * if the location is not known.
+     *
+     * @param rb  The resources used to localize the root object, or <tt>null</tt> if the root
+     *            object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,29 +58,28 @@ public class FXMLNumericInfoController implements Initializable {
         //==================================================================
         // anyadimos listener para que cuando cambie el valor en el modelo
         // se actualice su valor en su correspondiente representacion grafica
-        model.barometricPressureProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.barometricPressureProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             String dat0 = dat + "0"; // Variable separada por funcionamiento de lambda.
-            // + " " + model.getBarometricUnit()
             Platform.runLater(() -> {
                 nPressure.setText((dat.length() < PRESSURE_CHARS) ? dat0 : dat);
             });
         });
-        model.TEMPProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TEMPProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nTemp.setText(dat);
             });
         });
 
-        model.TWDProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TWDProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nDirection.setText(dat);
             });
         });
-        model.TWSProperty().addListener((a, b, c) -> {
-            String dat = String.valueOf(c);
+        model.TWSProperty().addListener((observable, oldV, newV) -> {
+            String dat = String.valueOf(newV);
             Platform.runLater(() -> {
                 nSpeed.setText(dat);
             });
@@ -82,29 +90,4 @@ public class FXMLNumericInfoController implements Initializable {
         File file = new File(DEFAULT_FILE_PATH);
         model.addSentenceReader(file);
     }
-
-    /*
-    @FXML
-    private void cargarFichero2(ActionEvent event) throws FileNotFoundException {
-        FileChooser ficheroChooser = new FileChooser();
-        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
-        ficheroChooser.setInitialDirectory(new File(currentPath));
-        ficheroChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("ficheros NMEA",
-                                                                                 "*.NMEA"));
-
-//        ficheroChooser.setSelectedExtensionFilter(new ExtensionFilter("ficheros NMEA", "*.NMEA"));
-        ficheroChooser.setTitle("fichero datos NMEA");
-
-        File ficheroNMEA = ficheroChooser.showOpenDialog(b.getScene().getWindow());
-        if (ficheroNMEA != null) {
-            // ========================================================
-            // NO se comprueba que se trata de un fichero de datos NMEA
-            // esto es una demos
-            //ficheroLabel.setText("fichero: " + ficheroNMEA.getName());
-            // ========================================================
-            // se pone en marcha el proceso para recibir tramas
-            model.addSentenceReader(ficheroNMEA);
-        }
-    }
-     */
 }
